@@ -1,0 +1,85 @@
+{
+  "project_info": {
+    "project_number": "441432487726",
+    "firebase_url": "https://uberapp-90152-default-rtdb.firebaseio.com",
+    "project_id": "uberapp-90152",
+    "storage_bucket": "uberapp-90152.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:441432487726:android:17153eaeb0beaee6af2cbf",
+        "android_client_info": {
+          "package_name": "com.example.taxiapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "441432487726-k76sn0esf8o0ks7sb0nc4d2sv4mv8nfn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.taxiapp",
+            "certificate_hash": "5880b24d022e38bd37a48765416a05ba188d75d4"
+          }
+        },
+        {
+          "client_id": "441432487726-40nm03mqoa8e5r9d9q9qopa28kbt3b8v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZKN1M4TU-TcdjsNSZxJomsJlxbMrD_3k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "441432487726-40nm03mqoa8e5r9d9q9qopa28kbt3b8v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:441432487726:android:dcb434dc1354b144af2cbf",
+        "android_client_info": {
+          "package_name": "com.example.uberdriver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "441432487726-5s7onpdnldo2ofgmd7ruakqoi7b9hs98.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.uberdriver",
+            "certificate_hash": "5880b24d022e38bd37a48765416a05ba188d75d4"
+          }
+        },
+        {
+          "client_id": "441432487726-40nm03mqoa8e5r9d9q9qopa28kbt3b8v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZKN1M4TU-TcdjsNSZxJomsJlxbMrD_3k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "441432487726-40nm03mqoa8e5r9d9q9qopa28kbt3b8v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
