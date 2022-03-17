@@ -11,6 +11,9 @@ import 'package:provider/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  //Future reloadData() async {
+  AppStateProvider().refreshData();
+
   setupLocator();
   return runApp(MultiProvider(
     providers: [
@@ -27,7 +30,7 @@ void main() async {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: MyApp(),
+      home: const MyApp(),
     ),
   ));
 }
@@ -48,7 +51,7 @@ class MyApp extends StatelessWidget {
             case Status.Authenticating:
               return LoginScreen();
             case Status.Authenticated:
-              return MyHomePage(
+              return const MyHomePage(
                 title: '',
               );
             default:

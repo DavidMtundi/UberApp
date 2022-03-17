@@ -43,7 +43,7 @@ dependencies:
   geolocator: ^8.2.0
 
   geocoding: ^2.0.2
-  google_maps_flutter: null
+  google_maps_flutter: ^2.1.2
   google_maps_webservice: null
   http: null
   location: null

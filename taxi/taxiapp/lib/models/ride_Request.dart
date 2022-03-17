@@ -26,12 +26,12 @@ class RideRequestModel {
   Map get destination => _destination;
 
   RideRequestModel.fromSnapshot(DocumentSnapshot snapshot) {
-    _id = snapshot.get(FieldPath([ID]));
-    _username = snapshot.get(FieldPath([USERNAME]));
-    _userId = snapshot.get(FieldPath([USER_ID]));
-    _driverId = snapshot.get(FieldPath([DRIVER_ID]));
-    _status = snapshot.get(FieldPath([STATUS]));
-    _position = snapshot.get(FieldPath([POSITION]));
-    _destination = snapshot.get(FieldPath([DESTINATION]));
+    _id = snapshot.get(FieldPath(const [ID]));
+    _username = snapshot.get(FieldPath(const [USERNAME]));
+    _userId = snapshot.get(FieldPath(const [USER_ID]));
+    _driverId = snapshot.get(FieldPath(const [DRIVER_ID]));
+    _status = snapshot.get(FieldPath(const [STATUS]));
+    _position = snapshot.get(FieldPath(const [POSITION]));
+    _destination = snapshot.get(FieldPath(const [DESTINATION]));
   }
 }

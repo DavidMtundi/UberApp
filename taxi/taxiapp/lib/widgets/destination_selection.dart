@@ -13,6 +13,7 @@ class DestinationSelectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //  print("in this widget we are");
     AppStateProvider appState = Provider.of<AppStateProvider>(context);
     return DraggableScrollableSheet(
       initialChildSize: 0.28,

@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_google_places/flutter_google_places.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:taxiapp/helpers/constants.dart';
@@ -11,7 +8,6 @@ import 'package:taxiapp/helpers/style.dart';
 import 'package:taxiapp/providers/app_state.dart';
 import "package:google_maps_webservice/places.dart";
 import 'package:taxiapp/providers/user.dart';
-import 'package:taxiapp/screens/splash.dart';
 import 'package:taxiapp/widgets/custom_text.dart';
 import 'package:taxiapp/widgets/destination_selection.dart';
 import 'package:taxiapp/widgets/driver_found.dart';
@@ -20,8 +16,6 @@ import 'package:taxiapp/widgets/payment_method_selection.dart';
 import 'package:taxiapp/widgets/pickup_selection_widget.dart';
 import 'package:taxiapp/widgets/trip_draggable.dart';
 
-import '../helpers/style.dart';
-import '../helpers/style.dart';
 import '../helpers/style.dart';
 import 'login.dart';
 
@@ -62,6 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: ListView(
           children: [
             UserAccountsDrawerHeader(
+                currentAccountPicture: Image.asset("assets/images/user.png"),
                 accountName: CustomText(
                   text: userProvider.userModel.name,
                   size: 18,
@@ -242,44 +237,44 @@ class _MapScreenState extends State<MapScreen> {
                       scaffoldSate.currentState!.openDrawer();
                     }),
               ),
-//              Positioned(
-//                bottom: 60,
-//                right: 0,
-//                left: 0,
-//                height: 60,
-//                child: Visibility(
-//                  visible: appState.routeModel != null,
-//                  child: Padding(
-//                    padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-//                    child: Container(
-//                      color: Colors.white,
-//                      child: Row(
-//                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                        children: <Widget>[
-//                          FlatButton.icon(
-//                              onPressed: null,
-//                              icon: Icon(Icons.timer),
-//                              label: Text(
-//                                  appState.routeModel?.timeNeeded?.text ?? "")),
-//                          FlatButton.icon(
-//                              onPressed: null,
-//                              icon: Icon(Icons.flag),
-//                              label: Text(
-//                                  appState.routeModel?.distance?.text ?? "")),
-//                          FlatButton(
-//                              onPressed: () {},
-//                              child: CustomText(
-//                                text:
-//                                    "\$${appState.routeModel?.distance?.value == null ? 0 : appState.routeModel?.distance?.value / 500}" ??
-//                                        "",
-//                                color: Colors.deepOrange,
-//                              ))
-//                        ],
-//                      ),
-//                    ),
-//                  ),
-//                ),
-//              ),
+              //  Positioned(
+              //    bottom: 60,
+              //    right: 0,
+              //    left: 0,
+              //    height: 60,
+              //    child: Visibility(
+              //      visible: appState.routeModel != null,
+              //      child: Padding(
+              //        padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+              //        child: Container(
+              //          color: Colors.white,
+              //          child: Row(
+              //            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //            children: <Widget>[
+              //              FlatButton.icon(
+              //                  onPressed: null,
+              //                  icon: Icon(Icons.timer),
+              //                  label: Text(
+              //                      appState.routeModel?.timeNeeded?.text ?? "")),
+              //              FlatButton.icon(
+              //                  onPressed: null,
+              //                  icon: Icon(Icons.flag),
+              //                  label: Text(
+              //                      appState.routeModel?.distance?.text ?? "")),
+              //              FlatButton(
+              //                  onPressed: () {},
+              //                  child: CustomText(
+              //                    text:
+              //                        "\$${appState.routeModel?.distance?.value == null ? 0 : appState.routeModel?.distance?.value / 500}" ??
+              //                            "",
+              //                    color: Colors.deepOrange,
+              //                  ))
+              //            ],
+              //          ),
+              //        ),
+              //      ),
+              //    ),
+              //  ),
             ],
           );
   }

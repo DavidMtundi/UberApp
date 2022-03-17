@@ -46,18 +46,18 @@ class DriverModel {
   int get votes => _votes;
 
   DriverModel.fromSnapshot(DocumentSnapshot snapshot) {
-    _name = snapshot.get(FieldPath([NAME]));
-    _id = snapshot.get(FieldPath([ID]));
-    _car = snapshot.get(FieldPath([CAR]));
-    _plate = snapshot.get(FieldPath([PLATE]));
-    _photo = snapshot.get(FieldPath([PHOTO]));
-    _phone = snapshot.get(FieldPath([PHONE]));
-    _rating = snapshot.get(FieldPath([RATING]));
-    _votes = snapshot.get(FieldPath([VOTES]));
+    _name = snapshot.get(FieldPath(const [NAME]));
+    _id = snapshot.get(FieldPath(const [ID]));
+    _car = snapshot.get(FieldPath(const [CAR]));
+    _plate = snapshot.get(FieldPath(const [PLATE]));
+    _photo = snapshot.get(FieldPath(const [PHOTO]));
+    _phone = snapshot.get(FieldPath(const [PHONE]));
+    _rating = snapshot.get(FieldPath(const [RATING]));
+    _votes = snapshot.get(FieldPath(const [VOTES]));
     _position = DriverPosition(
-        lat: snapshot.get(FieldPath([POSITION, LATITUDE])),
-        lng: snapshot.get(FieldPath([POSITION, LONGITUDE])),
-        heading: snapshot.get(FieldPath([POSITION, HEADING])));
+        lat: snapshot.get(FieldPath(const [POSITION, LATITUDE])),
+        lng: snapshot.get(FieldPath(const [POSITION, LONGITUDE])),
+        heading: snapshot.get(FieldPath(const [POSITION, HEADING])));
   }
 
   LatLng getPosition() {

@@ -53,8 +53,14 @@ class AppStateProvider with ChangeNotifier {
 
   final GoogleMapsServices _googleMapsServices = GoogleMapsServices();
   late GoogleMapController _mapController;
+
   //Geoflutterfire geo = Geoflutterfire();
-  late LatLng _center;
+  late LatLng _center; //= LatLng(-1.286389, 36.817223);
+
+  refreshData() async {
+    await _getUserLocation();
+  }
+
   late LatLng _lastPosition = _center;
   TextEditingController pickupLocationControlelr = TextEditingController();
   TextEditingController destinationController = TextEditingController();
@@ -145,18 +151,21 @@ class AppStateProvider with ChangeNotifier {
   }
 
   Future<Position> _getUserLocation() async {
-    if (await Permission.location.request().isGranted) {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      position = await Geolocator.getCurrentPosition();
-      List<Placemark> placemark =
-          await placemarkFromCoordinates(position.latitude, position.longitude);
+    try {
+      if (await Permission.location.request().isGranted) {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        position = await Geolocator.getCurrentPosition();
+        List<Placemark> placemark = await placemarkFromCoordinates(
+            position.latitude, position.longitude);
 
-      if (prefs.getString(COUNTRY) == null) {
-        String country = placemark[0].isoCountryCode!.toLowerCase();
-        await prefs.setString(COUNTRY, country);
+        if (prefs.getString(COUNTRY) == null) {
+          String country = placemark[0].isoCountryCode!.toLowerCase();
+          await prefs.setString(COUNTRY, country);
+        }
       }
+    } catch (e) {
+      print(e.toString());
     }
-
     _center = LatLng(position.latitude, position.longitude);
     notifyListeners();
     return position;

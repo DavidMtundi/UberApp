@@ -155,13 +155,18 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     padding: const EdgeInsets.all(10),
                     child: GestureDetector(
                       onTap: () async {
-                        if (!await authProvider.signUp()) {
-                          _key.currentState!.showSnackBar(const SnackBar(
-                              content: Text("Registration failed!")));
+                        if (!await authProvider.signUp(context)) {
+                          try {
+                            _key.currentState!.showSnackBar(const SnackBar(
+                                content: Text("Registration failed!")));
+                          } catch (e) {
+                            print(e.toString());
+                          }
                           return;
+                        } else {
+                          authProvider.clearController();
+                          changeScreenReplacement(context, LoginScreen());
                         }
-                        authProvider.clearController();
-                        changeScreenReplacement(context, LoginScreen());
                       },
                       child: Container(
                         decoration: BoxDecoration(

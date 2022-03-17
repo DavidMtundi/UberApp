@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:taxiapp/helpers/constants.dart';
+import 'package:taxiapp/helpers/screen_navigation.dart';
 import 'package:taxiapp/models/user.dart';
+import 'package:taxiapp/screens/login.dart';
 import 'package:taxiapp/services/user.dart';
 import 'package:taxiapp/widgets/loading.dart';
 
@@ -72,7 +74,7 @@ class UserProvider with ChangeNotifier {
 //    }
   }
 
-  Future<bool> signUp() async {
+  Future<bool> signUp(BuildContext context) async {
 //    try{
     _status = Status.Authenticating;
     notifyListeners();
@@ -93,9 +95,11 @@ class UserProvider with ChangeNotifier {
         );
         await prefs.setString(ID, result.user!.uid);
         await prefs.setBool(LOGGED_IN, true);
+        //     authProvider.clearController();
+        changeScreenReplacement(context, LoginScreen());
       });
     } catch (e) {
-      print("Unknown error occured while processing :" + e.toString());
+      print("Email is Registered");
     }
     return true;
 //    }catch(e){
@@ -153,7 +157,8 @@ class UserProvider with ChangeNotifier {
       if (auth.currentUser != null) {
         _user = auth.currentUser!;
         _status = Status.Authenticated;
-        //_userModel = await _userServices.getUserById(auth.currentUser!.uid);
+
+        _userModel = await _userServices.getUserById(auth.currentUser!.uid);
       }
     }
     notifyListeners();
