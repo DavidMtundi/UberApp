@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:taxiapp/OtherScreens/otherauthscreens/loginpage.dart';
 import 'package:taxiapp/helpers/constants.dart';
 import 'package:taxiapp/helpers/screen_navigation.dart';
 import 'package:taxiapp/helpers/style.dart';
@@ -16,6 +17,7 @@ import 'package:taxiapp/widgets/payment_method_selection.dart';
 import 'package:taxiapp/widgets/pickup_selection_widget.dart';
 import 'package:taxiapp/widgets/trip_draggable.dart';
 
+import '../OtherScreens/DrawerScreens/customAppDrawer.dart';
 import '../helpers/style.dart';
 import 'login.dart';
 
@@ -52,29 +54,30 @@ class _MyHomePageState extends State<MyHomePage> {
     return SafeArea(
       child: Scaffold(
         key: scaffoldState,
-        drawer: Drawer(
-            child: ListView(
-          children: [
-            UserAccountsDrawerHeader(
-                currentAccountPicture: Image.asset("assets/images/user.png"),
-                accountName: CustomText(
-                  text: userProvider.userModel.name,
-                  size: 18,
-                  weight: FontWeight.bold,
-                ),
-                accountEmail: CustomText(
-                  text: userProvider.userModel.email,
-                )),
-            ListTile(
-              leading: const Icon(Icons.exit_to_app),
-              title: CustomText(text: "Log out"),
-              onTap: () {
-                userProvider.signOut();
-                changeScreenReplacement(context, LoginScreen());
-              },
-            )
-          ],
-        )),
+        drawer: AppDrawer(),
+        // drawer: Drawer(
+        //     child: ListView(
+        //   children: [
+        //     UserAccountsDrawerHeader(
+        //         currentAccountPicture: Image.asset("assets/images/user.png"),
+        //         accountName: CustomText(
+        //           text: userProvider.userModel.name,
+        //           size: 18,
+        //           weight: FontWeight.bold,
+        //         ),
+        //         accountEmail: CustomText(
+        //           text: userProvider.userModel.email,
+        //         )),
+        //     ListTile(
+        //       leading: const Icon(Icons.exit_to_app),
+        //       title: CustomText(text: "Log out"),
+        //       onTap: () {
+        //         userProvider.signOut();
+        //         changeScreenReplacement(context, Login());
+        //       },
+        //     )
+        //   ],
+        // )),
         body: Stack(
           children: [
             MapScreen(scaffoldState),

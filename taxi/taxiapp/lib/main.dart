@@ -1,5 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:taxiapp/OtherScreens/DrawerScreens/router.dart';
+import 'package:taxiapp/OtherScreens/customWalkThrough.dart';
+import 'package:taxiapp/OtherScreens/otherconstants/themedart.dart';
 import 'package:taxiapp/providers/app_state.dart';
 import 'package:taxiapp/providers/user.dart';
 import 'package:taxiapp/screens/login.dart';
@@ -27,9 +30,9 @@ void main() async {
     child: MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'taxiapp',
-      theme: ThemeData(
-        primarySwatch: Colors.red,
-      ),
+      theme: ThemeScheme.light(),
+      darkTheme: ThemeScheme.dark(),
+      onGenerateRoute: onGenerateRoute,
       home: const MyApp(),
     ),
   ));
@@ -49,13 +52,13 @@ class MyApp extends StatelessWidget {
               return Splash();
             case Status.Unauthenticated:
             case Status.Authenticating:
-              return LoginScreen();
+              return WalkThrough();
             case Status.Authenticated:
               return const MyHomePage(
                 title: '',
               );
             default:
-              return LoginScreen();
+              return WalkThrough();
           }
         });
   }

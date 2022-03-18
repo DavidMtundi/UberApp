@@ -18,6 +18,13 @@ class UserProvider with ChangeNotifier {
 
   late User _user;
   Status _status = Status.Uninitialized;
+  int _currentPage = 0;
+  void onPageChange(int newPage) {
+    _currentPage = newPage;
+    notifyListeners();
+  }
+
+  int get currentPageValue => _currentPage;
   final UserServices _userServices = UserServices();
   UserModel _userModel = UserModel(
       idvalue: "idvalue",
@@ -37,6 +44,20 @@ class UserProvider with ChangeNotifier {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController name = TextEditingController();
+  TextEditingController lastname = TextEditingController();
+  TextEditingController countrycode = TextEditingController();
+  TextEditingController message = TextEditingController();
+
+  TextEditingController newpassword = TextEditingController();
+  TextEditingController otp1 = TextEditingController();
+  TextEditingController otp2 = TextEditingController();
+  TextEditingController otp3 = TextEditingController();
+  TextEditingController otp4 = TextEditingController();
+  TextEditingController cardNumber = TextEditingController();
+  TextEditingController expiry = TextEditingController();
+  TextEditingController cvv = TextEditingController();
+  TextEditingController placename = TextEditingController();
+  TextEditingController placeaddress = TextEditingController();
   TextEditingController phone = TextEditingController();
 
   UserProvider.initialize() {
@@ -66,12 +87,6 @@ class UserProvider with ChangeNotifier {
       print(e.toString());
     }
     return true;
-//    }catch(e){
-//      _status = Status.Unauthenticated;
-//      notifyListeners();
-//      print(e.toString());
-//      return false;
-//    }
   }
 
   Future<bool> signUp(BuildContext context) async {
@@ -96,18 +111,12 @@ class UserProvider with ChangeNotifier {
         await prefs.setString(ID, result.user!.uid);
         await prefs.setBool(LOGGED_IN, true);
         //     authProvider.clearController();
-        changeScreenReplacement(context, LoginScreen());
+        // changeScreenReplacement(context, LoginScreen());
       });
     } catch (e) {
       print("Email is Registered");
     }
     return true;
-//    }catch(e){
-//      _status = Status.Unauthenticated;
-//      notifyListeners();
-//      print(e.toString());
-//      return false;
-//    }
   }
 
   Future signOut() async {
@@ -126,6 +135,19 @@ class UserProvider with ChangeNotifier {
     password.text = "";
     email.text = "";
     phone.text = "";
+    lastname.text = "";
+    otp1.text = "";
+    cardNumber.text = "";
+    expiry.text = "";
+    otp2.text = "";
+    cvv.text = "";
+    placename.text = "";
+    placeaddress.text = "";
+    otp3.text = "";
+    otp4.text = "";
+    newpassword.text = "";
+    countrycode.text = "";
+    message.text = "";
   }
 
   Future<void> reloadUserModel() async {
@@ -149,6 +171,7 @@ class UserProvider with ChangeNotifier {
   }
 
   _initialize() async {
+    //clearController();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool loggedIn = prefs.getBool(LOGGED_IN) ?? false;
     if (!loggedIn) {

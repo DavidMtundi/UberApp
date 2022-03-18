@@ -13,8 +13,9 @@ class DestinationSelectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //  print("in this widget we are");
     AppStateProvider appState = Provider.of<AppStateProvider>(context);
+
+    //  print("in this widget we are");
     return DraggableScrollableSheet(
       initialChildSize: 0.28,
       minChildSize: 0.28,
@@ -23,8 +24,7 @@ class DestinationSelectionWidget extends StatelessWidget {
           decoration: BoxDecoration(
               color: white,
               borderRadius: const BorderRadius.only(
-                  topLeft: const Radius.circular(20),
-                  topRight: const Radius.circular(20)),
+                  topLeft: Radius.circular(20), topRight: Radius.circular(20)),
               boxShadow: [
                 BoxShadow(
                     color: grey.withOpacity(.8),
@@ -54,30 +54,27 @@ class DestinationSelectionWidget extends StatelessWidget {
                           mode: Mode.overlay, // Mode.fullscreen
                           language: "en",
                           components: [Component(Component.country, "ke")]);
-                      if (p != null) {
-                        print("Test one complete");
-                        try {
-                          PlacesDetailsResponse detail =
-                              await places.getDetailsByPlaceId(p.placeId!);
-                          double lat = detail.result.geometry!.location.lat;
-                          double lng = detail.result.geometry!.location.lng;
-                          appState.changeRequestedDestination(
-                              reqDestination: p.description!,
-                              lat: lat,
-                              lng: lng);
-                          appState.updateDestination(
-                              destination: p.description!);
-                          LatLng coordinates = LatLng(lat, lng);
-                          appState.setDestination(coordinates: coordinates);
-                          appState.addPickupMarker(appState.center);
-                          appState.changeWidgetShowed(
-                              showWidget: Show.PICKUP_SELECTION);
-                        } catch (e) {
-                          print(e.toString());
-                        }
-                      } else {
-                        print("P is null");
+                      //   if (p != null) {
+                      print("Test one complete");
+                      try {
+                        PlacesDetailsResponse detail =
+                            await places.getDetailsByPlaceId(p!.placeId!);
+                        double lat = detail.result.geometry!.location.lat;
+                        double lng = detail.result.geometry!.location.lng;
+                        appState.changeRequestedDestination(
+                            reqDestination: p.description!, lat: lat, lng: lng);
+                        appState.updateDestination(destination: p.description!);
+                        LatLng coordinates = LatLng(lat, lng);
+                        appState.setDestination(coordinates: coordinates);
+                        appState.addPickupMarker(appState.center);
+                        appState.changeWidgetShowed(
+                            showWidget: Show.PICKUP_SELECTION);
+                      } catch (e) {
+                        print(e.toString());
                       }
+                      //   } else {
+                      // print("P is null");
+                      // }
 
                       // appState.sendRequest(coordinates: coordinates);
                     },
@@ -113,8 +110,14 @@ class DestinationSelectionWidget extends StatelessWidget {
                     color: white,
                   ),
                 ),
-                title: const Text("Home"),
-                subtitle: const Text("25th avenue, 23 street"),
+                title: const Text(
+                  "Home",
+                  style: TextStyle(color: Colors.black87),
+                ),
+                subtitle: const Text(
+                  "25th avenue, 23 street",
+                  style: TextStyle(color: Colors.black87),
+                ),
               ),
               ListTile(
                 leading: CircleAvatar(
@@ -124,8 +127,14 @@ class DestinationSelectionWidget extends StatelessWidget {
                     color: white,
                   ),
                 ),
-                title: const Text("Work"),
-                subtitle: const Text("25th avenue, 23 street"),
+                title: const Text(
+                  "Work",
+                  style: TextStyle(color: Colors.black87),
+                ),
+                subtitle: const Text(
+                  "25th avenue, 23 street",
+                  style: TextStyle(color: Colors.black87),
+                ),
               ),
               ListTile(
                 leading: CircleAvatar(
@@ -135,8 +144,14 @@ class DestinationSelectionWidget extends StatelessWidget {
                     color: primary,
                   ),
                 ),
-                title: const Text("Recent location"),
-                subtitle: const Text("25th avenue, 23 street"),
+                title: const Text(
+                  "Recent location",
+                  style: TextStyle(color: Colors.black87),
+                ),
+                subtitle: const Text(
+                  "25th avenue, 23 street",
+                  style: TextStyle(color: Colors.black87),
+                ),
               ),
               ListTile(
                 leading: CircleAvatar(
@@ -146,8 +161,14 @@ class DestinationSelectionWidget extends StatelessWidget {
                     color: primary,
                   ),
                 ),
-                title: const Text("Recent location"),
-                subtitle: const Text("25th avenue, 23 street"),
+                title: const Text(
+                  "Recent location",
+                  style: TextStyle(color: Colors.black87),
+                ),
+                subtitle: const Text(
+                  "25th avenue, 23 street",
+                  style: TextStyle(color: Colors.black26),
+                ),
               ),
             ],
           ),
