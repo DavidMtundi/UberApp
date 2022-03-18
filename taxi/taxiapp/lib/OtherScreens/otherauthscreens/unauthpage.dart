@@ -19,13 +19,13 @@ class UnAuth extends StatelessWidget {
                   //  height: 100,
                   fit: BoxFit.fitWidth,
                 ),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.black12,
                 ),
               ),
             ),
             Container(
-              padding: EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(20.0),
               // decoration: BoxDecoration(
               //   color: Colors.white,
               // ),
@@ -37,7 +37,7 @@ class UnAuth extends StatelessWidget {
                       Expanded(
                         child: FlatButton(
                           color: _theme.primaryColor,
-                          child: Text(
+                          child: const Text(
                             "LOGIN",
                             style: TextStyle(
                               color: Colors.white,
@@ -51,11 +51,11 @@ class UnAuth extends StatelessWidget {
                           },
                         ),
                       ),
-                      SizedBox(width: 40.0),
+                      const SizedBox(width: 40.0),
                       Expanded(
                         child: FlatButton(
                           color: facebookColor,
-                          child: Text(
+                          child: const Text(
                             "REGISTER",
                             style: TextStyle(
                               color: Colors.white,
@@ -71,7 +71,7 @@ class UnAuth extends StatelessWidget {
                       )
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15.0,
                   ),
                   Row(
@@ -82,10 +82,10 @@ class UnAuth extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        child: Text(
+                        child: const Text(
                           "Or connect with social",
                         ),
-                        padding: EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                           horizontal: 15.0,
                         ),
                       ),
@@ -97,8 +97,8 @@ class UnAuth extends StatelessWidget {
                     ],
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 15.0),
-                    padding: EdgeInsets.symmetric(
+                    margin: const EdgeInsets.only(top: 15.0),
+                    padding: const EdgeInsets.symmetric(
                       horizontal: 15.0,
                     ),
                     height: 45.0,
@@ -108,13 +108,13 @@ class UnAuth extends StatelessWidget {
                     ),
                     child: Row(
                       children: <Widget>[
-                        Icon(
-                          FontAwesomeIcons.facebookSquare,
+                        const Icon(
+                          FontAwesomeIcons.googlePlusG,
                           color: Colors.white,
                         ),
-                        Expanded(
+                        const Expanded(
                           child: Text(
-                            "Login with Facebook",
+                            "Login with Google",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Colors.white,
@@ -126,8 +126,8 @@ class UnAuth extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 15.0),
-                    padding: EdgeInsets.symmetric(
+                    margin: const EdgeInsets.only(top: 15.0),
+                    padding: const EdgeInsets.symmetric(
                       horizontal: 15.0,
                     ),
                     height: 45.0,

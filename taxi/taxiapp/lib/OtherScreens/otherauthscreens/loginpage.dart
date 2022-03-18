@@ -95,12 +95,12 @@ class Login extends StatelessWidget {
                         child: Row(
                           children: <Widget>[
                             const Icon(
-                              FontAwesomeIcons.facebookSquare,
+                              FontAwesomeIcons.googlePlusSquare,
                               color: Colors.white,
                             ),
                             Expanded(
                               child: Text(
-                                "Connect with Facebook",
+                                "Connect with Google",
                                 textAlign: TextAlign.center,
                                 style: _theme.textTheme.bodyMedium!.merge(
                                   const TextStyle(

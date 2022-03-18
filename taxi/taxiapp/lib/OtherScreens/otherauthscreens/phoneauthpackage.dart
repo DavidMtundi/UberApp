@@ -3,6 +3,7 @@ import 'package:firebase_phone_auth_handler/firebase_phone_auth_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:taxiapp/OtherScreens/otherauthscreens/loginpage.dart';
 import 'package:taxiapp/providers/user.dart';
 import 'package:taxiapp/screens/home.dart';
 
@@ -75,9 +76,7 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen> {
           });
           //! save person details then
           Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const MyHomePage(title: '')));
+              context, MaterialPageRoute(builder: (context) => Login()));
           // debugPrint(
           //   autoVerified
           //       ? "OTP was fetched automatically"
@@ -186,8 +185,7 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen> {
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                          const MyHomePage(title: '')));
+                                      builder: (context) => Login()));
                             }
                           }
                         },
