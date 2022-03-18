@@ -8,6 +8,7 @@ class MyRides extends StatelessWidget {
     final ThemeData _theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
+        //backgroundColor: Colors.white70,
         backgroundColor: _theme.scaffoldBackgroundColor,
         automaticallyImplyLeading: false,
         elevation: 0.0,

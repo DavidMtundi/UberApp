@@ -21,7 +21,7 @@ class WalkthroughStepper extends StatelessWidget {
                       curve: Curves.ease);
                 },
                 child: Container(
-                  color: Theme.of(context).scaffoldBackgroundColor,
+                  //   color: Theme.of(context).scaffoldBackgroundColor,
                   padding: const EdgeInsets.symmetric(vertical: 25.0),
                   child: Container(
                     height: 5.0,

@@ -4,7 +4,7 @@ import 'package:taxiapp/models/user.dart';
 class UserServices {
   String collection = "users";
 
-  void createUser(
+  Future createUser(
       {required String id,
       required String name,
       required String email,
@@ -12,8 +12,8 @@ class UserServices {
       int votes = 0,
       int trips = 0,
       double rating = 0,
-      required Map position}) {
-    firebaseFiretore.collection(collection).doc(id).set({
+      required Map position}) async {
+    await firebaseFiretore.collection(collection).doc(id).set({
       "name": name,
       "id": id,
       "phone": phone,

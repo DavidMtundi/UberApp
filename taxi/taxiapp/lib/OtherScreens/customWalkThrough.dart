@@ -14,6 +14,7 @@ class WalkThrough extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Container(
+          color: Colors.white70,
           child: Column(
             children: <Widget>[
               Expanded(
@@ -24,28 +25,27 @@ class WalkThrough extends StatelessWidget {
                   },
                   children: <Widget>[
                     WalkThroughTemplate(
-                      title: "Pay with your mobile",
+                      title: "Get instant rides",
                       subtitle:
-                          "I know this is crazy, buy i tried something fresh, I hope you love it.",
+                          "Book a ride with us for quality and customer friendly services.",
                       image: Image.asset("assets/images/walkthrough1.png"),
                     ),
                     WalkThroughTemplate(
                       title: "Get bonuses on each ride",
                       subtitle:
-                          "I know this is crazy, buy i tried something fresh, I hope you love it.",
+                          "Get bonusses and redemable points for the many rides you book with us.",
                       image: Image.asset("assets/images/walkthrough2.png"),
                     ),
                     WalkThroughTemplate(
-                      title: "Invite friends and get paid.",
-                      subtitle:
-                          "I know this is crazy, buy i tried something fresh, I hope you love it.",
+                      title: "Get your delivery in time.",
+                      subtitle: "Your trusted delivery person at all times.",
                       image: Image.asset("assets/images/walkthrough3.png"),
                     )
                   ],
                 ),
               ),
               Container(
-                padding: EdgeInsets.all(24.0),
+                padding: const EdgeInsets.all(24.0),
                 child: Row(
                   children: <Widget>[
                     Expanded(
@@ -56,7 +56,7 @@ class WalkThrough extends StatelessWidget {
                       child: Container(
                         color: Theme.of(context).primaryColor,
                         child: IconButton(
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.trending_flat,
                             color: Colors.white,
                           ),
@@ -69,10 +69,10 @@ class WalkThrough extends StatelessWidget {
                               return;
                             }
                             _pageViewController.nextPage(
-                                duration: Duration(milliseconds: 500),
+                                duration: const Duration(milliseconds: 500),
                                 curve: Curves.ease);
                           },
-                          padding: EdgeInsets.all(13.0),
+                          padding: const EdgeInsets.all(13.0),
                         ),
                       ),
                     )

@@ -2,7 +2,7 @@
     package="com.example.taxiapp">
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
    <application
-        android:label="taxiapp"
+        android:label="RideShare"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
 

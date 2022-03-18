@@ -28,7 +28,7 @@ class _SplashState extends State<Splash> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Image.asset(
-              "assets/images/lg.png",
+              "assets/icon/playstore.png",
               width: 200,
             ),
             Loading(),

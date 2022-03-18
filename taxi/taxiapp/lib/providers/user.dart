@@ -8,6 +8,8 @@ import 'package:taxiapp/helpers/screen_navigation.dart';
 import 'package:taxiapp/models/user.dart';
 import 'package:taxiapp/screens/login.dart';
 import 'package:taxiapp/services/user.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
 import 'package:taxiapp/widgets/loading.dart';
 
 enum Status { Uninitialized, Authenticated, Authenticating, Unauthenticated }
@@ -68,46 +70,58 @@ class UserProvider with ChangeNotifier {
   //User get user => _user;
 
   Future<bool> signIn() async {
+    bool isloggedin = false;
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
 //    try{
+
     _status = Status.Authenticating;
     notifyListeners();
     try {
       await auth
           .signInWithEmailAndPassword(
               email: email.text.trim(), password: password.text.trim())
-          .then((value) async {
+          .onError((error, stackTrace) {
+        throw Fluttertoast.showToast(msg: " Incorrect Password ");
+      }).then((value) async {
         await prefs.setString(ID, value.user!.uid);
         await prefs.setBool(LOGGED_IN, true);
-
+        isloggedin = true;
+        print(isloggedin.toString());
         _userModel = await _userServices.getUserById(value.user!.uid);
       });
     } catch (e) {
       print(e.toString());
+      Fluttertoast.showToast(msg: "Incorrect Credentials");
     }
-    return true;
+    return isloggedin;
   }
 
   Future<bool> signUp(BuildContext context) async {
 //    try{
+    bool issighnedup = false;
     _status = Status.Authenticating;
     notifyListeners();
     try {
       await auth
           .createUserWithEmailAndPassword(
               email: email.text.trim(), password: password.text.trim())
-          .then((result) async {
+          .onError((error, stackTrace) {
+        throw Fluttertoast.showToast(msg: error.toString());
+      }).then((result) async {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setString(ID, result.user!.uid);
         await prefs.setBool(LOGGED_IN, true);
-        _userServices.createUser(
+        await _userServices.createUser(
           id: result.user!.uid,
           name: name.text.trim(),
           email: email.text.trim(),
           phone: phone.text.trim(),
           position: {},
-        );
+        ).onError((error, stackTrace) {
+          Fluttertoast.showToast(msg: error.toString());
+        });
+        issighnedup = true;
         await prefs.setString(ID, result.user!.uid);
         await prefs.setBool(LOGGED_IN, true);
         //     authProvider.clearController();
@@ -115,8 +129,9 @@ class UserProvider with ChangeNotifier {
       });
     } catch (e) {
       print("Email is Registered");
+      Fluttertoast.showToast(msg: e.toString());
     }
-    return true;
+    return issighnedup;
   }
 
   Future signOut() async {

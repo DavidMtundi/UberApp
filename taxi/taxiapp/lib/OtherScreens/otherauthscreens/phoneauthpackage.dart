@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:taxiapp/OtherScreens/otherauthscreens/loginpage.dart';
+import 'package:taxiapp/helpers/screen_navigation.dart';
 import 'package:taxiapp/providers/user.dart';
 import 'package:taxiapp/screens/home.dart';
 
@@ -62,6 +63,8 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final UserProvider authProvider = Provider.of<UserProvider>(context);
+
     return SafeArea(
       child: FirebasePhoneAuthHandler(
         phoneNumber: widget.phoneNumber,
@@ -75,13 +78,10 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen> {
             isloading = false;
           });
           //! save person details then
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => Login()));
-          // debugPrint(
-          //   autoVerified
-          //       ? "OTP was fetched automatically"
-          //       : "OTP was verified manually",
-          // );
+          await changeScreenReplacement(context, Login())
+              .then((value) => authProvider.clearController());
+          // Navigator.pushReplacement(
+          //     context, MaterialPageRoute(builder: (context) => Login()));
 
           debugPrint("Login Success UID: ${userCredential.user?.uid}");
         },

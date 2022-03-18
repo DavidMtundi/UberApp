@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:taxiapp/OtherScreens/otherauthscreens/loginpage.dart';
-import 'package:taxiapp/OtherScreens/otherauthscreens/otpVerificationPage.dart';
 import 'package:taxiapp/OtherScreens/otherauthscreens/phoneauthpackage.dart';
-import 'package:taxiapp/OtherScreens/otherconstants/constants.dart';
 import 'package:taxiapp/OtherScreens/otherconstants/formValidations.dart';
 import 'package:taxiapp/OtherScreens/otherwidgets/customtextformfield.dart';
 import 'package:taxiapp/helpers/screen_navigation.dart';
@@ -83,8 +82,19 @@ class Register extends StatelessWidget {
                   onPressed: () async {
                     if (_sighnupKey.currentState!.validate()) {
                       try {
-                        await authProvider.signUp(context).then((value) =>
-                            changeScreenReplacement(context, MainOtpPage()));
+                        await authProvider.signUp(context).then((value) async {
+                          if (value == true) {
+                            try {
+                              await changeScreenReplacement(
+                                  context, const MainOtpPage());
+                            } catch (e) {
+                              Fluttertoast.showToast(msg: e.toString());
+                            }
+                          } else {
+                            Fluttertoast.showToast(
+                                msg: "Incorrect Credentials");
+                          }
+                        });
                       } catch (e) {
                         _key.currentState!.showSnackBar(const SnackBar(
                             content: Text("Registration failed!")));
@@ -174,6 +184,7 @@ class Register extends StatelessWidget {
             formvalidator: validatepassword,
             hintText: "Password",
             givencontroller: authProvider.password,
+            obscuretext: true,
           ),
           const SizedBox(
             height: 25.0,

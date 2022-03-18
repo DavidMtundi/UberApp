@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:taxiapp/OtherScreens/otherauthscreens/registerpage.dart';
@@ -9,7 +10,14 @@ import 'package:taxiapp/helpers/screen_navigation.dart';
 import 'package:taxiapp/providers/user.dart';
 import 'package:taxiapp/screens/home.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
+  Login({Key? key}) : super(key: key);
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
   final _key = GlobalKey<ScaffoldState>();
 
   @override
@@ -62,7 +70,7 @@ class Login extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 20.0),
                 child: Text(
                   "Log In",
-                  style: _theme.textTheme.headline1!.merge(
+                  style: _theme.textTheme.headlineMedium!.merge(
                     const TextStyle(fontSize: 30.0),
                   ),
                 ),
@@ -80,7 +88,7 @@ class Login extends StatelessWidget {
                   children: <Widget>[
                     const Text(
                       "Or connect using social account",
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontWeight: FontWeight.w700,
                       ),
                     ),
@@ -162,6 +170,7 @@ class Login extends StatelessWidget {
   final GlobalKey<FormState> _loginformKey = GlobalKey<FormState>();
 
   Widget _loginForm(BuildContext context) {
+    bool isloading = false;
     final UserProvider authProvider = Provider.of<UserProvider>(context);
 
     final ThemeData _theme = Theme.of(context);
@@ -184,6 +193,7 @@ class Login extends StatelessWidget {
             hintText: "Password",
             givencontroller: authProvider.password,
             formvalidator: validatepassword,
+            obscuretext: true,
           ),
           const SizedBox(
             height: 20.0,
@@ -201,20 +211,32 @@ class Login extends StatelessWidget {
           Container(
             width: MediaQuery.of(context).size.width,
             height: 45.0,
-            child: FlatButton(
-              color: _theme.primaryColor,
+            color: _theme.primaryColor,
+            child: TextButton(
               onPressed: () async {
                 if (_loginformKey.currentState!.validate()) {
                   try {
-                    await authProvider
-                        .signIn()
-                        .then((value) => authProvider.clearController())
-                        .then((value) => changeScreenReplacement(
+                    await authProvider.signIn().then((value) async {
+                      if (value == true) {
+                        setState(() {
+                          isloading = false;
+                        });
+                        await changeScreenReplacement(
                             context,
                             const MyHomePage(
                               title: '',
-                            )));
+                            )).then((value) => authProvider.clearController());
+                      } else {
+                        setState(() {
+                          isloading = false;
+                        });
+                        Fluttertoast.showToast(msg: "Incorrect Credentials");
+                      }
+                    });
                   } catch (e) {
+                    setState(() {
+                      isloading = false;
+                    });
                     _key.currentState!.showSnackBar(
                         const SnackBar(content: Text("Login failed!")));
                   }
@@ -222,7 +244,7 @@ class Login extends StatelessWidget {
               },
               child: const Text(
                 "LOG IN",
-                style: const TextStyle(color: Colors.white, fontSize: 16.0),
+                style: TextStyle(color: Colors.white, fontSize: 16.0),
               ),
             ),
           )

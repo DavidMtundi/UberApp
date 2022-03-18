@@ -15,21 +15,19 @@ class UnAuth extends StatelessWidget {
             Expanded(
               child: Container(
                 child: Image.asset(
-                  "assets/images/letsgo.jpeg",
-                  //  height: 100,
-                  fit: BoxFit.fitWidth,
+                  "assets/images/rides.jpg",
+                  // height: 100,
+                  fit: BoxFit.fill,
                 ),
-                decoration: const BoxDecoration(
-                  color: Colors.black12,
-                ),
+                decoration: const BoxDecoration(color: Colors.white),
               ),
             ),
             Container(
               padding: const EdgeInsets.all(20.0),
-              // decoration: BoxDecoration(
-              //   color: Colors.white,
-              // ),
-              height: 250.0,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+              ),
+              height: 350.0,
               child: Column(
                 children: <Widget>[
                   Row(
@@ -107,12 +105,12 @@ class UnAuth extends StatelessWidget {
                       borderRadius: BorderRadius.circular(6.0),
                     ),
                     child: Row(
-                      children: <Widget>[
-                        const Icon(
+                      children: const <Widget>[
+                        Icon(
                           FontAwesomeIcons.googlePlusG,
                           color: Colors.white,
                         ),
-                        const Expanded(
+                        Expanded(
                           child: Text(
                             "Login with Google",
                             textAlign: TextAlign.center,

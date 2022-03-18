@@ -13,9 +13,13 @@ class WalkThroughTemplate extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData _theme = Theme.of(context);
     return Container(
-      padding: EdgeInsets.all(24.0),
+      color: Colors.white70,
+      padding: const EdgeInsets.all(24.0),
       child: Column(
         children: <Widget>[
+          Container(
+            height: 100,
+          ),
           Expanded(
             child: Center(
               child: image,
@@ -31,9 +35,12 @@ class WalkThroughTemplate extends StatelessWidget {
                     children: <Widget>[
                       Text(
                         title,
-                        style: _theme.textTheme.titleLarge,
+                        style: _theme.textTheme.titleLarge!.merge(
+                            const TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold)),
                       ),
-                      SizedBox(height: 10.0),
+                      const SizedBox(height: 10.0),
                       Text(
                         subtitle,
                         style: _theme.textTheme.titleMedium!.merge(

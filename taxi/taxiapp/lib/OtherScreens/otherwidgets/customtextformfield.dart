@@ -10,11 +10,13 @@ class CustomTextFormField extends StatelessWidget {
   final bool showLabel;
   String? Function(String?) formvalidator;
   TextEditingController givencontroller;
+  bool obscuretext;
 
   CustomTextFormField(
       {Key? key,
       required this.hintText,
       this.verticalPadding = 10.0,
+      this.obscuretext = false,
       // this.value = "",
       this.suffixIcon = const Icon(Icons.numbers_outlined),
       this.formvalidator = geterror,
@@ -44,6 +46,7 @@ class CustomTextFormField extends StatelessWidget {
           TextFormField(
             controller: givencontroller,
             validator: formvalidator,
+            obscureText: obscuretext,
             //   initialValue: value,
             style: const TextStyle(
               fontWeight: FontWeight.bold,

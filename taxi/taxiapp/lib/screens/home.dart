@@ -209,6 +209,8 @@ class _MapScreenState extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
     AppStateProvider appState = Provider.of<AppStateProvider>(context);
+    appState.refreshData();
+
     UserProvider userProvider = Provider.of<UserProvider>(context);
 
     return appState.center == null
