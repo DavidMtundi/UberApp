@@ -9,6 +9,8 @@ import 'package:taxiapp/helpers/style.dart';
 import 'package:taxiapp/providers/app_state.dart';
 import "package:google_maps_webservice/places.dart";
 import 'package:taxiapp/providers/user.dart';
+import 'package:google_place/google_place.dart';
+
 import 'package:taxiapp/widgets/custom_text.dart';
 import 'package:taxiapp/widgets/destination_selection.dart';
 import 'package:taxiapp/widgets/driver_found.dart';
@@ -54,30 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return SafeArea(
       child: Scaffold(
         key: scaffoldState,
-        drawer: AppDrawer(),
-        // drawer: Drawer(
-        //     child: ListView(
-        //   children: [
-        //     UserAccountsDrawerHeader(
-        //         currentAccountPicture: Image.asset("assets/images/user.png"),
-        //         accountName: CustomText(
-        //           text: userProvider.userModel.name,
-        //           size: 18,
-        //           weight: FontWeight.bold,
-        //         ),
-        //         accountEmail: CustomText(
-        //           text: userProvider.userModel.email,
-        //         )),
-        //     ListTile(
-        //       leading: const Icon(Icons.exit_to_app),
-        //       title: CustomText(text: "Log out"),
-        //       onTap: () {
-        //         userProvider.signOut();
-        //         changeScreenReplacement(context, Login());
-        //       },
-        //     )
-        //   ],
-        // )),
+        //drawer: AppDrawer(),
         body: Stack(
           children: [
             MapScreen(scaffoldState),
@@ -138,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               child: RichText(
                                   text: const TextSpan(children: [
                                 TextSpan(
-                                    text: "You\'ll reach your desiation in \n",
+                                    text: "You\'ll reach your destination in \n",
                                     style:
                                         TextStyle(fontWeight: FontWeight.w300)),
                                 // appState.routeModel!=null?  TextSpan(
@@ -229,19 +208,19 @@ class _MapScreenState extends State<MapScreen> {
                 onCameraMove: appState.onCameraMove,
                 polylines: appState.poly,
               ),
-              Positioned(
-                top: 10,
-                left: 15,
-                child: IconButton(
-                    icon: const Icon(
-                      Icons.menu,
-                      color: primary,
-                      size: 30,
-                    ),
-                    onPressed: () {
-                      scaffoldSate.currentState!.openDrawer();
-                    }),
-              ),
+              // Positioned(
+              //   top: 10,
+              //   left: 15,
+              //   child: IconButton(
+              //       icon: const Icon(
+              //         Icons.menu,
+              //         color: primary,
+              //         size: 30,
+              //       ),
+              //       onPressed: () {
+              //         scaffoldSate.currentState!.openDrawer();
+              //       }),
+              // ),
               //  Positioned(
               //    bottom: 60,
               //    right: 0,

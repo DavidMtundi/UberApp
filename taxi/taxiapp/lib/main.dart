@@ -1,14 +1,15 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:taxiapp/MainPages/MainPage.dart';
+import 'package:taxiapp/MainPages/otherDetails/otherDetails.dart';
 import 'package:taxiapp/OtherScreens/DrawerScreens/router.dart';
 import 'package:taxiapp/OtherScreens/customWalkThrough.dart';
+import 'package:taxiapp/OtherScreens/otherauthscreens/loginpage.dart';
 import 'package:taxiapp/OtherScreens/otherconstants/themedart.dart';
 import 'package:taxiapp/providers/app_state.dart';
 import 'package:taxiapp/providers/user.dart';
-import 'package:taxiapp/screens/login.dart';
 import 'package:taxiapp/screens/splash.dart';
 import 'locators/service_locator.dart';
-import 'screens/home.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -51,12 +52,12 @@ class MyApp extends StatelessWidget {
             case Status.Uninitialized:
               return Splash();
             case Status.Unauthenticated:
+              return WalkThrough();
             case Status.Authenticating:
               return WalkThrough();
             case Status.Authenticated:
-              return const MyHomePage(
-                title: '',
-              );
+              // return OtherProperties();
+              return MainPage();
             default:
               return WalkThrough();
           }

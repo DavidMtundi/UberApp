@@ -202,6 +202,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.5"
+  flutter_polyline_points:
+    dependency: "direct main"
+    description:
+      name: flutter_polyline_points
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   flutter_spinkit:
     dependency: "direct main"
     description:
@@ -326,6 +333,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.0.20-nullsafety.5"
+  google_place:
+    dependency: "direct main"
+    description:
+      name: google_place
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.7"
   http:
     dependency: "direct main"
     description:

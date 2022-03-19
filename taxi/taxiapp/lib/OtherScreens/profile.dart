@@ -36,8 +36,8 @@ class Profile extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     "Hello " + authProvider.userModel.name,
-                    style: _theme.textTheme.titleMedium!
-                        .merge(const TextStyle(fontSize: 26.0)),
+                    style: _theme.textTheme.titleMedium!.merge(const TextStyle(
+                        fontSize: 26.0, fontWeight: FontWeight.bold)),
                   ),
                   const CircleAvatar(
                     radius: 25.0,

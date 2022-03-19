@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_google_places/flutter_google_places.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -6,11 +8,20 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:taxiapp/helpers/constants.dart';
 import 'package:taxiapp/helpers/style.dart';
+import 'package:google_place/google_place.dart' as gp;
+
 import 'package:taxiapp/providers/app_state.dart';
 
-class DestinationSelectionWidget extends StatelessWidget {
+class DestinationSelectionWidget extends StatefulWidget {
   const DestinationSelectionWidget({Key? key}) : super(key: key);
 
+  @override
+  State<DestinationSelectionWidget> createState() =>
+      _DestinationSelectionWidgetState();
+}
+
+class _DestinationSelectionWidgetState
+    extends State<DestinationSelectionWidget> {
   @override
   Widget build(BuildContext context) {
     AppStateProvider appState = Provider.of<AppStateProvider>(context);
@@ -45,20 +56,42 @@ class DestinationSelectionWidget extends StatelessWidget {
                   color: grey.withOpacity(.3),
                   child: TextField(
                     onTap: () async {
-                      print("the first test is complete");
                       SharedPreferences preferences =
                           await SharedPreferences.getInstance();
                       Prediction? p = await PlacesAutocomplete.show(
                           context: context,
                           apiKey: GOOGLE_MAPS_API_KEY,
+                          radius: 10000000,
+                          types: [],
+                          strictbounds: false,
                           mode: Mode.overlay, // Mode.fullscreen
-                          language: "en",
+                          language: "ke",
                           components: [Component(Component.country, "ke")]);
-                      //   if (p != null) {
-                      print("Test one complete");
-                      try {
+                      if (p != null) {
+                        print(
+                            "the selected location is ${p.description.toString()}");
+                        // try {
+                        setState(() {
+                          appState.destinationController.text =
+                              p.description.toString();
+                        });
+                        var googlePlace = gp.GooglePlace(GOOGLE_MAPS_API_KEY);
+                        gp.DetailsResponse? vresult =
+                            await googlePlace.details.get(
+                          p.placeId!,
+                          language: 'ke',
+                          region: 'ke',
+                        );
+                        print(p.placeId.toString());
+                        print(vresult!.result!.geometry!.location!.lat);
+                        // print(vresult!['lat']);
+                        //double latitude = vresult![""];
+
                         PlacesDetailsResponse detail =
-                            await places.getDetailsByPlaceId(p!.placeId!);
+                            await places.getDetailsByPlaceId(p.placeId!,
+                                language: 'ke', region: 'ke');
+                        print("test two done");
+
                         double lat = detail.result.geometry!.location.lat;
                         double lng = detail.result.geometry!.location.lng;
                         appState.changeRequestedDestination(
@@ -69,12 +102,12 @@ class DestinationSelectionWidget extends StatelessWidget {
                         appState.addPickupMarker(appState.center);
                         appState.changeWidgetShowed(
                             showWidget: Show.PICKUP_SELECTION);
-                      } catch (e) {
-                        print(e.toString());
+                        // } catch (e) {
+                        //   print(e.toString());
+                        // }
+                      } else {
+                        print("P is null");
                       }
-                      //   } else {
-                      // print("P is null");
-                      // }
 
                       // appState.sendRequest(coordinates: coordinates);
                     },

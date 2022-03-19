@@ -6,5 +6,6 @@ void changeScreen(BuildContext context, Widget widget) {
 
 // request here
 Future changeScreenReplacement(BuildContext context, Widget widget) async {
-  Navigator.push(context, MaterialPageRoute(builder: (context) => widget));
+  Navigator.pushReplacement(
+      context, MaterialPageRoute(builder: (context) => widget));
 }

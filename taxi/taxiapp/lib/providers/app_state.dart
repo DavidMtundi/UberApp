@@ -126,18 +126,6 @@ class AppStateProvider with ChangeNotifier {
       handleOnLaunch(message.data);
     });
 
-    // FirebaseMessaging.onBackgroundMessage((message) {
-    //   return handleOnResume(message.data);
-    // });
-
-//     fcm.configure(
-// //      this callback is used when the app runs on the foreground
-//         onMessage: handleOnMessage,
-// //        used when the app is closed completely and is launched using the notification
-//         onLaunch: handleOnLaunch,
-// //        when its on the background and opened using the notification drawer
-//         onResume: handleOnResume);
-
     _setCustomMapPin();
     _getUserLocation();
     _listemToDrivers();
@@ -241,7 +229,7 @@ class AppStateProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void updateDestination({required String destination}) {
+  Future updateDestination({required String destination}) async {
     destinationController.text = destination;
     notifyListeners();
   }

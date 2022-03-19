@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:taxiapp/MainPages/MainPage.dart';
 import 'package:taxiapp/OtherScreens/otherauthscreens/registerpage.dart';
 import 'package:taxiapp/OtherScreens/otherconstants/constants.dart';
 import 'package:taxiapp/OtherScreens/otherconstants/formValidations.dart';
@@ -221,11 +222,8 @@ class _LoginState extends State<Login> {
                         setState(() {
                           isloading = false;
                         });
-                        await changeScreenReplacement(
-                            context,
-                            const MyHomePage(
-                              title: '',
-                            )).then((value) => authProvider.clearController());
+                        await changeScreenReplacement(context, MainPage())
+                            .then((value) => authProvider.clearController());
                       } else {
                         setState(() {
                           isloading = false;

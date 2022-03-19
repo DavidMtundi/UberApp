@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:taxiapp/MainPages/MainPage.dart';
 import 'package:taxiapp/helpers/screen_navigation.dart';
 import 'package:taxiapp/helpers/style.dart';
 import 'package:taxiapp/providers/user.dart';
@@ -109,8 +110,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         authProvider.clearController();
                         changeScreenReplacement(
                             context,
-                            MyHomePage(
-                              title: 'Home',
+                            MainPage(
+                             
                             ));
                       },
                       child: Container(
