@@ -304,9 +304,9 @@ class AppStateProvider with ChangeNotifier {
   }
 
   addPickupMarker(LatLng position) {
-    if (pickupCoordinates == null) {
-      pickupCoordinates = position;
-    }
+    // if (pickupCoordinates == null) {
+    pickupCoordinates = position;
+    //}
     _markers.add(Marker(
         markerId: MarkerId(PICKUP_MARKER_ID),
         position: position,

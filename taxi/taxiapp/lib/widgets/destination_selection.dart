@@ -11,6 +11,8 @@ import 'package:taxiapp/helpers/style.dart';
 import 'package:google_place/google_place.dart' as gp;
 
 import 'package:taxiapp/providers/app_state.dart';
+import 'package:geocode/geocode.dart';
+import 'package:taxiapp/services/map_requests.dart';
 
 class DestinationSelectionWidget extends StatefulWidget {
   const DestinationSelectionWidget({Key? key}) : super(key: key);
@@ -67,37 +69,66 @@ class _DestinationSelectionWidgetState
                           mode: Mode.overlay, // Mode.fullscreen
                           language: "ke",
                           components: [Component(Component.country, "ke")]);
+                      double lat = 0;
+                      double lng = 0;
                       if (p != null) {
-                        print(
-                            "the selected location is ${p.description.toString()}");
+                        List<double> latslongs = await GoogleMapsServices()
+                            .getLatandLong(p.placeId!);
+                        print("Latitude: ${latslongs[0].toString()}");
+                        print("Longitude: ${latslongs[1].toString()}");
+                        // print(
+                        //     "the selected location is ${p.description.toString()}");
+                        // GeoCode geoCode = GeoCode(apiKey: GOOGLE_MAPS_API_KEY);
+                        // try {
+                        //   Coordinates coordinates = await geoCode
+                        //       .forwardGeocoding(address: p.description!);
+                        setState(() {
+                          lat = latslongs[0];
+                          lng = latslongs[1];
+                        });
+
+                        //   print("Latitude: ${coordinates.latitude}");
+                        //   print("Longitude: ${coordinates.longitude}");
+                        // } catch (e) {
+                        //   print(e);
+                        // }
+
                         // try {
                         setState(() {
                           appState.destinationController.text =
                               p.description.toString();
                         });
-                        var googlePlace = gp.GooglePlace(GOOGLE_MAPS_API_KEY);
-                        gp.DetailsResponse? vresult =
-                            await googlePlace.details.get(
-                          p.placeId!,
-                          language: 'ke',
-                          region: 'ke',
-                        );
-                        print(p.placeId.toString());
-                        print(vresult!.result!.geometry!.location!.lat);
-                        // print(vresult!['lat']);
-                        //double latitude = vresult![""];
+                        // var googlePlace = gp.GooglePlace(GOOGLE_MAPS_API_KEY);
+                        // gp.DetailsResponse? vresult =
+                        //     await googlePlace.details.get(
+                        //   p.placeId!,
+                        //   language: 'ke',
+                        //   region: 'ke',
+                        // );
+                        // print(vresult!.result!.geometry.toString());
+                        // await googlePlace.details
+                        //     .get(p.placeId!)
+                        //     .then(((value) {
+                        //   print(value);
+                        //   if (value != null) {
+                        //     print(value.result);
+                        //     print(value.result!.geometry!.location!.lat
+                        //         .toString());
+                        //   }
+                        // }));
 
-                        PlacesDetailsResponse detail =
-                            await places.getDetailsByPlaceId(p.placeId!,
-                                language: 'ke', region: 'ke');
-                        print("test two done");
+                        // PlacesDetailsResponse detail =
+                        //     await places.getDetailsByPlaceId(p.placeId!,
+                        //         language: 'ke', region: 'ke');
+                        // print("test two done");
 
-                        double lat = detail.result.geometry!.location.lat;
-                        double lng = detail.result.geometry!.location.lng;
+                        // double lat = detail.result.geometry!.location.lat;
+                        // double lng = detail.result.geometry!.location.lng;
                         appState.changeRequestedDestination(
                             reqDestination: p.description!, lat: lat, lng: lng);
                         appState.updateDestination(destination: p.description!);
                         LatLng coordinates = LatLng(lat, lng);
+                        print("here we go");
                         appState.setDestination(coordinates: coordinates);
                         appState.addPickupMarker(appState.center);
                         appState.changeWidgetShowed(

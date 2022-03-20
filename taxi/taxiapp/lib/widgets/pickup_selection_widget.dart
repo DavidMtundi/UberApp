@@ -69,8 +69,11 @@ class PickupSelectionWidget extends StatelessWidget {
                       Prediction? p = await PlacesAutocomplete.show(
                           context: context,
                           apiKey: GOOGLE_MAPS_API_KEY,
+                          radius: 10000000,
+                          types: [],
+                          strictbounds: false,
                           mode: Mode.overlay, // Mode.fullscreen
-                          // language: "pt",
+                          language: "ke",
                           components: [
                             Component(Component.country,
                                 preferences.getString(COUNTRY)!)
