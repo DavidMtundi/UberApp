@@ -1,4 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:uberdriver/DrawerScreens/router.dart';
+import 'package:uberdriver/otherconstants/themedart.dart';
 import 'package:uberdriver/providers/app_provider.dart';
 import 'package:uberdriver/providers/user.dart';
 import 'package:uberdriver/screens/login.dart';
@@ -24,8 +26,11 @@ Future<void> main() async {
     ],
     child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(primaryColor: Colors.deepOrange),
-        title: "Flutter Taxi",
+        //theme: ThemeData(primaryColor: Colors.deepOrange),
+        title: "Flutter Driver",
+        theme: ThemeScheme.light(),
+        darkTheme: ThemeScheme.dark(),
+        onGenerateRoute: onGenerateRoute,
         home: MyApp()),
   ));
 }

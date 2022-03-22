@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:taxiapp/helpers/constants.dart';
-import 'package:taxiapp/models/route.dart';
+import 'package:taxiapp/MainPages/Widgets/route.dart';
 
 class GoogleMapsServices {
   Future<List<double>> getLatandLong(String placeid) async {

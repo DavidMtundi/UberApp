@@ -47,7 +47,8 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   void autoCompleteSearch(String value) async {
-    var result = await googlePlace.autocomplete.get(value);
+    var result =
+        await googlePlace.autocomplete.get(value, region: 'ke', language: 'ke');
     if (result != null && result.predictions != null && mounted) {
       print(result.predictions!.first.description);
       setState(() {

@@ -32,8 +32,11 @@ class ActionContainerExtraLarge extends StatelessWidget {
                   children: [
                     Text("Tap to ride",
                         style: TextStyle(
-                            fontWeight: FontWeight.w600, fontSize: 15)),
-                    Icon(Icons.forward)
+                            fontWeight: FontWeight.w600, fontSize: 14)),
+                    Icon(
+                      Icons.forward,
+                      size: 12,
+                    )
                   ],
                 ),
               ],
@@ -42,11 +45,13 @@ class ActionContainerExtraLarge extends StatelessWidget {
               width: 30,
             ),
             Container(
-              height: 140,
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(30),),
+              height: 149,
               width: 150,
               child: Image.asset(
                 img,
-                fit: BoxFit.fitWidth,
+                fit: BoxFit.fill,
               ),
             ),
           ],

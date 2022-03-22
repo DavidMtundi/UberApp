@@ -20,6 +20,13 @@ class UserProvider with ChangeNotifier {
   UserModel get userModel => _userModel;
   Status get status => _status;
   User get user => _user;
+  int _currentPage = 0;
+  void onPageChange(int newPage) {
+    _currentPage = newPage;
+    notifyListeners();
+  }
+
+  int get currentPageValue => _currentPage;
 
   // public variables
   final formkey = GlobalKey<FormState>();
@@ -27,7 +34,19 @@ class UserProvider with ChangeNotifier {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController name = TextEditingController();
+  TextEditingController fname = TextEditingController();
+  TextEditingController lastname = TextEditingController();
+
   TextEditingController phone = TextEditingController();
+  TextEditingController countrycode = TextEditingController();
+  TextEditingController otp1 = TextEditingController();
+  TextEditingController otp2 = TextEditingController();
+  TextEditingController otp3 = TextEditingController();
+  TextEditingController otp4 = TextEditingController();
+  TextEditingController cardnumber = TextEditingController();
+  TextEditingController expiry = TextEditingController();
+  TextEditingController cvv = TextEditingController();
+  TextEditingController message = TextEditingController();
 
   UserProvider.initialize() {
     _fireSetUp();
@@ -60,7 +79,7 @@ class UserProvider with ChangeNotifier {
     }
   }
 
-  Future<bool> signUp(Position position) async {
+  Future<bool> signUp(BuildContext context, Position position) async {
     try {
       _status = Status.Authenticating;
       notifyListeners();
@@ -100,6 +119,17 @@ class UserProvider with ChangeNotifier {
     password.text = "";
     email.text = "";
     phone.text = "";
+    fname.text = "";
+    lastname.text = "";
+    countrycode.text = "";
+    otp1.text = "";
+    cardnumber.text = "";
+    otp2.text = "";
+    message.text = "";
+    otp3.text = "";
+    otp4.text = "";
+    expiry.text = "";
+    cvv.text = "";
   }
 
   Future<void> reloadUserModel() async {

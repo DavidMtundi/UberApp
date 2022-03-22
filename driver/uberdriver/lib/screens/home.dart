@@ -1,3 +1,4 @@
+import 'package:uberdriver/DrawerScreens/customAppDrawer.dart';
 import 'package:uberdriver/helpers/constants.dart';
 import 'package:uberdriver/helpers/screen_navigation.dart';
 import 'package:uberdriver/helpers/stars_method.dart';
@@ -61,28 +62,29 @@ class _MyHomePageState extends State<MyHomePage> {
     Widget home = SafeArea(
       child: Scaffold(
           key: scaffoldState,
-          drawer: Drawer(
-              child: ListView(
-            children: [
-              UserAccountsDrawerHeader(
-                  accountName: CustomText(
-                    text: userProvider.userModel.name,
-                    size: 18,
-                    weight: FontWeight.bold,
-                  ),
-                  accountEmail: CustomText(
-                    text: userProvider.userModel.email,
-                  )),
-              ListTile(
-                leading: const Icon(Icons.exit_to_app),
-                title: CustomText(text: "Log out"),
-                onTap: () {
-                  userProvider.signOut();
-                  changeScreenReplacement(context, LoginScreen());
-                },
-              )
-            ],
-          )),
+          drawer: AppDrawer(),
+          // drawer: Drawer(
+          //     child: ListView(
+          //   children: [
+          //     UserAccountsDrawerHeader(
+          //         accountName: CustomText(
+          //           text: userProvider.userModel.name,
+          //           size: 18,
+          //           weight: FontWeight.bold,
+          //         ),
+          //         accountEmail: CustomText(
+          //           text: userProvider.userModel.email,
+          //         )),
+          //     ListTile(
+          //       leading: const Icon(Icons.exit_to_app),
+          //       title: CustomText(text: "Log out"),
+          //       onTap: () {
+          //         userProvider.signOut();
+          //         changeScreenReplacement(context, LoginScreen());
+          //       },
+          //     )
+          //   ],
+          // )),
           body: Stack(
             children: [
               MapScreen(scaffoldState),

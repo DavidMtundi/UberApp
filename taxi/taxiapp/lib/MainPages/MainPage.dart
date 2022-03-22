@@ -71,11 +71,20 @@ class _MainPageState extends State<MainPage> {
               height: 10,
             ),
             Row(
-              children: const [
+              children: [
                 Expanded(
-                  child: ActionContainerLarge(
-                    img: 'assets/images/suv.png',
-                    title: 'Ride',
+                  child: GestureDetector(
+                    onTap: () {
+                      changeScreen(
+                          context,
+                          MyHomePage(
+                            title: '',
+                          ));
+                    },
+                    child: ActionContainerLarge(
+                      img: 'assets/images/suv.png',
+                      title: 'Ride',
+                    ),
                   ),
                 ),
                 SizedBox(width: 20),

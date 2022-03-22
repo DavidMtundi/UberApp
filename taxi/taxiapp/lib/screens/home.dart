@@ -117,7 +117,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               child: RichText(
                                   text: const TextSpan(children: [
                                 TextSpan(
-                                    text: "You\'ll reach your destination in \n",
+                                    text:
+                                        "You\'ll reach your destination in \n",
                                     style:
                                         TextStyle(fontWeight: FontWeight.w300)),
                                 // appState.routeModel!=null?  TextSpan(
@@ -208,57 +209,6 @@ class _MapScreenState extends State<MapScreen> {
                 onCameraMove: appState.onCameraMove,
                 polylines: appState.poly,
               ),
-              // Positioned(
-              //   top: 10,
-              //   left: 15,
-              //   child: IconButton(
-              //       icon: const Icon(
-              //         Icons.menu,
-              //         color: primary,
-              //         size: 30,
-              //       ),
-              //       onPressed: () {
-              //         scaffoldSate.currentState!.openDrawer();
-              //       }),
-              // ),
-              //  Positioned(
-              //    bottom: 60,
-              //    right: 0,
-              //    left: 0,
-              //    height: 60,
-              //    child: Visibility(
-              //      visible: appState.routeModel != null,
-              //      child: Padding(
-              //        padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-              //        child: Container(
-              //          color: Colors.white,
-              //          child: Row(
-              //            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              //            children: <Widget>[
-              //              FlatButton.icon(
-              //                  onPressed: null,
-              //                  icon: Icon(Icons.timer),
-              //                  label: Text(
-              //                      appState.routeModel?.timeNeeded?.text ?? "")),
-              //              FlatButton.icon(
-              //                  onPressed: null,
-              //                  icon: Icon(Icons.flag),
-              //                  label: Text(
-              //                      appState.routeModel?.distance?.text ?? "")),
-              //              FlatButton(
-              //                  onPressed: () {},
-              //                  child: CustomText(
-              //                    text:
-              //                        "\$${appState.routeModel?.distance?.value == null ? 0 : appState.routeModel?.distance?.value / 500}" ??
-              //                            "",
-              //                    color: Colors.deepOrange,
-              //                  ))
-              //            ],
-              //          ),
-              //        ),
-              //      ),
-              //    ),
-              //  ),
             ],
           );
   }

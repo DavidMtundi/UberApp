@@ -41,7 +41,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Image.asset(
-                          "assets/images/lg.png",
+                          "assets/images/lg.jpeg",
                           width: 230,
                           height: 120,
                         ),
@@ -155,7 +155,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     padding: const EdgeInsets.all(10),
                     child: GestureDetector(
                       onTap: () async {
-                        if (!await authProvider.signUp(app.position)) {
+                        if (!await authProvider.signUp(context, app.position)) {
                           _key.currentState!.showSnackBar(
                               SnackBar(content: Text("Registration failed!")));
                           return;

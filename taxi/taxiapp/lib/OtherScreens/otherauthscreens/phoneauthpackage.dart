@@ -100,6 +100,7 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen> {
         builder: (context, controller) {
           return Scaffold(
             appBar: AppBar(
+              backgroundColor: Colors.white60,
               title: const Text("Verify Phone Number"),
               actions: [
                 if (controller.codeSent)
@@ -109,7 +110,7 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen> {
                           ? "${controller.timerCount.inSeconds}s"
                           : "RESEND",
                       style: const TextStyle(
-                        color: Colors.blue,
+                        //    color: Colors.b,
                         fontSize: 18,
                       ),
                     ),
@@ -130,7 +131,7 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen> {
                       Text(
                         "We've sent an SMS with a \n verification code to \n ${widget.phoneNumber}",
                         style: const TextStyle(
-                          fontSize: 25,
+                          fontSize: 20,
                         ),
                       ),
                       const SizedBox(height: 10),

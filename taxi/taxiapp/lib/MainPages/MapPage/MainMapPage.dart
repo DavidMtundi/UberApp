@@ -53,7 +53,7 @@ class _MainPageMapScreenState extends State<MainPageMapScreen> {
         polylineId: id,
         color: Colors.black,
         points: polylineCoordinates,
-        width: 1);
+        width: 12);
     polylines[id] = polyline;
     setState(() {});
   }

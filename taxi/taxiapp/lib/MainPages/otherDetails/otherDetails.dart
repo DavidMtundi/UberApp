@@ -54,32 +54,33 @@ class _OtherPropertiesState extends State<OtherProperties> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        // leading: backButtonVisible
-        //     ? 
-        leading:
-            IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: CircleAvatar(
-                  backgroundColor: Colors.white,
-                  child: const Icon(
-                    Icons.arrow_back,
-                    color: Colors.black,
-                  ),
-                ),
-              )
-            // : null,
-      ),
+          backgroundColor: Colors.white,
+          elevation: 0,
+          // leading: backButtonVisible
+          //     ?
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: CircleAvatar(
+              backgroundColor: Colors.white,
+              child: const Icon(
+                Icons.arrow_back,
+                color: Colors.black,
+              ),
+            ),
+          )
+          // : null,
+          ),
       body: Container(
         color: Colors.white,
         width: MediaQuery.of(context).size.width -
             (MediaQuery.of(context).size.width * 0.1),
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.only(left: 20.0, top: 10),
+            padding: const EdgeInsets.only(
+              left: 20.0,
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[

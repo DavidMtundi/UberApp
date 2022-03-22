@@ -12,7 +12,7 @@ import 'package:taxiapp/helpers/constants.dart';
 import 'package:taxiapp/helpers/style.dart';
 import 'package:taxiapp/models/driver.dart';
 import 'package:taxiapp/models/ride_Request.dart';
-import 'package:taxiapp/models/route.dart';
+import 'package:taxiapp/MainPages/Widgets/route.dart';
 import 'package:taxiapp/models/user.dart';
 import 'package:taxiapp/services/drivers.dart';
 import 'package:taxiapp/services/map_requests.dart';
