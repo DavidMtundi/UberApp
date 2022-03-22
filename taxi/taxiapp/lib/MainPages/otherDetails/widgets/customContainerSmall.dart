@@ -12,7 +12,7 @@ class CustomContainerSmall extends StatelessWidget {
     return Container(
       height: 80,
       decoration: BoxDecoration(
-        color: Colors.grey[200],
+        color: Colors.green[200],
         borderRadius: BorderRadius.circular(5),
       ),
       child: ListTile(

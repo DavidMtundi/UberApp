@@ -41,13 +41,13 @@ class UserModel {
   double get rating => ratingsvalue;
 
   UserModel.fromSnapshot(DocumentSnapshot snapshot) {
-    namevalue = snapshot.get(FieldPath([NAME]));
-    emailvalue = snapshot.get(FieldPath([EMAIL]));
-    idvalue = snapshot.get(FieldPath([ID]));
-    tokenvalue = snapshot.get(FieldPath([TOKEN]));
-    phonevalue = snapshot.get(FieldPath([PHONE]));
-    votesvalue = snapshot.get(FieldPath([VOTES]));
-    tripsvalue = snapshot.get(FieldPath([TRIPS]));
-    ratingsvalue = snapshot.get(FieldPath([RATING]));
+    namevalue = snapshot.get(FieldPath([NAME])) ?? "00";
+    emailvalue = snapshot.get(FieldPath([EMAIL])) ?? "0";
+    idvalue = snapshot.get(FieldPath([ID])) ?? "0";
+    tokenvalue = snapshot.get(FieldPath([TOKEN])) ?? "0";
+    phonevalue = snapshot.get(FieldPath([PHONE])) ?? "0";
+    votesvalue = snapshot.get(FieldPath([VOTES])) ?? 0;
+    tripsvalue = snapshot.get(FieldPath([TRIPS])) ?? 0;
+    ratingsvalue = snapshot.get(FieldPath([RATING])) ?? 0;
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:taxiapp/MainPages/SearchScreen.dart';
@@ -67,9 +68,7 @@ class _MainPageState extends State<MainPage> {
                 title: 'Ride',
               ),
             ),
-            SizedBox(
-              height: 10,
-            ),
+            SizedBox(height: 10),
             Row(
               children: [
                 Expanded(
@@ -95,8 +94,10 @@ class _MainPageState extends State<MainPage> {
               ],
             ),
             const SizedBox(height: 10),
-            Expanded(
+            Container(
+              color: Colors.green[200],
               child: TextField(
+                readOnly: true,
                 onTap: () {
                   Navigator.push(
                     context,
@@ -109,6 +110,8 @@ class _MainPageState extends State<MainPage> {
                 showCursor: false,
                 decoration: InputDecoration(
                     hintText: 'Where To?',
+                    suffixIcon: Icon(FontAwesomeIcons.businessTime),
+                    icon: Icon(FontAwesomeIcons.locationArrow),
                     hintStyle: const TextStyle(
                         fontWeight: FontWeight.w500, fontSize: 24),
                     filled: true,
@@ -117,14 +120,17 @@ class _MainPageState extends State<MainPage> {
               ),
             ),
             const SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  "Around You",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-              ],
+            Container(
+              color: Colors.green[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    "Around You",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
             ),
             SizedBox(height: 10),
             Expanded(

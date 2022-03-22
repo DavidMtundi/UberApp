@@ -9,12 +9,14 @@ class CustomBtn extends StatelessWidget {
   final Color bgColor;
   final Color shadowColor;
   final Function onTap;
+  final FontWeight weight;
 
   const CustomBtn(
       {Key? key,
       required this.text,
       this.txtColor = Colors.white,
-      this.bgColor = Colors.black,
+      this.bgColor = Colors.green,
+      this.weight = FontWeight.normal,
       this.shadowColor = Colors.grey,
       required this.onTap})
       : super(key: key);
@@ -22,7 +24,13 @@ class CustomBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap(),
+      onTap: () {
+        try {
+          onTap();
+        } catch (e) {
+          print(e.toString());
+        }
+      },
       child: Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
@@ -39,7 +47,7 @@ class CustomBtn extends StatelessWidget {
             text: text,
             color: txtColor,
             size: 22,
-            weight: FontWeight.normal,
+            weight: weight,
           ),
         ),
       ),

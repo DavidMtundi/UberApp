@@ -12,7 +12,7 @@ class ActionContainerLarge extends StatelessWidget {
     return Container(
       height: 100,
       decoration: BoxDecoration(
-        color: Colors.grey[200],
+        color: Colors.green[200],
         borderRadius: BorderRadius.circular(20),
       ),
       child: Padding(

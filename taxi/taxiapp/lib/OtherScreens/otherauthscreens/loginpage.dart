@@ -83,84 +83,6 @@ class _LoginState extends State<Login> {
               const SizedBox(
                 height: 30.0,
               ),
-              Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    const Text(
-                      "Or connect using social account",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10.0,
-                    ),
-                    Container(
-                      height: 45.0,
-                      child: FlatButton(
-                        onPressed: () {},
-                        color: facebookColor,
-                        child: Row(
-                          children: <Widget>[
-                            const Icon(
-                              FontAwesomeIcons.googlePlusSquare,
-                              color: Colors.white,
-                            ),
-                            Expanded(
-                              child: Text(
-                                "Connect with Google",
-                                textAlign: TextAlign.center,
-                                style: _theme.textTheme.bodyMedium!.merge(
-                                  const TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                            color: _theme.primaryColor,
-                          ),
-                          borderRadius: BorderRadius.circular(3.0)),
-                      margin: const EdgeInsets.only(
-                        top: 10.0,
-                      ),
-                      height: 45.0,
-                      child: FlatButton(
-                        onPressed: () {},
-                        color: _theme.scaffoldBackgroundColor,
-                        child: Row(
-                          children: <Widget>[
-                            Icon(
-                              Icons.phone,
-                              color: _theme.primaryColor,
-                            ),
-                            Expanded(
-                              child: Text(
-                                "Connect with Phone number",
-                                textAlign: TextAlign.center,
-                                style: _theme.textTheme.bodyMedium!.merge(
-                                  TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: _theme.primaryColor,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              )
             ],
           ),
         ),
@@ -216,28 +138,19 @@ class _LoginState extends State<Login> {
             child: TextButton(
               onPressed: () async {
                 if (_loginformKey.currentState!.validate()) {
-                  try {
-                    await authProvider.signIn().then((value) async {
-                      if (value == true) {
-                        setState(() {
-                          isloading = false;
-                        });
-                        await changeScreenReplacement(context, MainPage())
-                            .then((value) => authProvider.clearController());
-                      } else {
-                        setState(() {
-                          isloading = false;
-                        });
-                        Fluttertoast.showToast(msg: "Incorrect Credentials");
-                      }
-                    });
-                  } catch (e) {
-                    setState(() {
-                      isloading = false;
-                    });
-                    _key.currentState!.showSnackBar(
-                        const SnackBar(content: Text("Login failed!")));
-                  }
+                  //  try {
+                  await authProvider.signIn().then((value) async {
+                    if (value == true) {
+                      print("the user id is registered already");
+                      await changeScreenReplacement(context, MainPage());
+                      // .then((value) => authProvider.clearController());
+                    } else {
+                      Fluttertoast.showToast(msg: "Incorrect Credentials");
+                      print("the user id is not registered already");
+                    }
+                  });
+                  //  } catch (e) {
+                  // ?
                 }
               },
               child: const Text(

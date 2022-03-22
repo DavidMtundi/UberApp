@@ -46,3 +46,36 @@ class CustomBtn extends StatelessWidget {
     );
   }
 }
+
+OutlinedButton CustomOutlinedBtn(String text, Color txtColor, Color backcolor,
+    Color shadowcolor, Function onTap) {
+  // final String text;
+  // final Color txtColor;
+  // final Color bgColor;
+  // final Color shadowColor;
+  // final Function onTap;
+
+  return OutlinedButton(
+    onPressed: onTap(),
+    child: Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          color: backcolor,
+          boxShadow: [
+            BoxShadow(
+                color: shadowcolor.withOpacity(0.5),
+                offset: Offset(2, 3),
+                blurRadius: 4)
+          ]),
+      child: Padding(
+        padding: const EdgeInsets.all(14),
+        child: CustomText(
+          text: text,
+          color: txtColor,
+          size: 22,
+          weight: FontWeight.normal,
+        ),
+      ),
+    ),
+  );
+}

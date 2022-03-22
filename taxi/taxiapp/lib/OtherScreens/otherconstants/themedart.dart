@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:taxiapp/OtherScreens/otherconstants/constants.dart';
 
-
-
 class ThemeScheme {
   static dark() {
     return ThemeData(
       brightness: Brightness.dark,
       scaffoldBackgroundColor: dbackgroundColor,
       primaryColor: dprimaryColor,
-    //  accentColor: dsecondaryColor,
-     // textTheme: textTheme,
+      //  accentColor: dsecondaryColor,
+      // textTheme: textTheme,
       appBarTheme: const AppBarTheme(
         iconTheme: IconThemeData(color: Colors.white),
       ),
@@ -28,9 +26,9 @@ class ThemeScheme {
     return ThemeData(
       brightness: Brightness.light,
       scaffoldBackgroundColor: lbackgroundColor,
-      primaryColor: lprimaryColor,
-   //   accentColor: lsecondaryColor,
-   //   textTheme: textTheme,
+      primaryColor: maincolor,
+      //   accentColor: lsecondaryColor,
+      //   textTheme: textTheme,
       appBarTheme: AppBarTheme(
         iconTheme: IconThemeData(color: dbasicDarkColor),
       ),

@@ -74,8 +74,9 @@ class _OtherPropertiesState extends State<OtherProperties> {
           ),
       body: Container(
         color: Colors.white,
-        width: MediaQuery.of(context).size.width -
-            (MediaQuery.of(context).size.width * 0.1),
+        padding: EdgeInsets.only(right: 10),
+        // width: MediaQuery.of(context).size.width -
+        //     (MediaQuery.of(context).size.width * 0.1),
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.only(

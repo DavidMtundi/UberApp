@@ -13,7 +13,7 @@ class ActionContainerExtraLarge extends StatelessWidget {
     return Container(
       height: 150,
       decoration: BoxDecoration(
-        color: Colors.grey[200],
+        color: Colors.green[200],
         borderRadius: BorderRadius.circular(20),
       ),
       child: Padding(
@@ -41,17 +41,17 @@ class ActionContainerExtraLarge extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
-              width: 30,
-            ),
+            // SizedBox(
+            //   width: 30,
+            // ),
             Container(
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(30),),
-              height: 149,
-              width: 150,
-              child: Image.asset(
-                img,
-                fit: BoxFit.fill,
+              width: 159,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(30.0),
+                child: Image.asset(
+                  img,
+                  fit: BoxFit.contain,
+                ),
               ),
             ),
           ],

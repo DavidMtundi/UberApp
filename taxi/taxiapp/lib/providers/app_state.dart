@@ -55,7 +55,7 @@ class AppStateProvider with ChangeNotifier {
   late GoogleMapController _mapController;
 
   //Geoflutterfire geo = Geoflutterfire();
-  late LatLng _center; //= LatLng(-1.286389, 36.817223);
+  late LatLng _center; // LatLng(-1.286389, 36.817223);
 
   Future refreshData() async {
     await _getUserLocation();

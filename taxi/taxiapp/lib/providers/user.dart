@@ -33,7 +33,7 @@ class UserProvider with ChangeNotifier {
       namevalue: "namevalue",
       emailvalue: "emailvalue",
       phonevalue: "phonevalue",
-      tokenvalue: "tokenvalue",
+      tokenvalue: "0",
       votesvalue: 0,
       tripsvalue: 0,
       ratingsvalue: 0);
@@ -77,23 +77,23 @@ class UserProvider with ChangeNotifier {
 
     _status = Status.Authenticating;
     notifyListeners();
-    try {
-      await auth
-          .signInWithEmailAndPassword(
-              email: email.text.trim(), password: password.text.trim())
-          .onError((error, stackTrace) {
-        throw Fluttertoast.showToast(msg: " Incorrect Password ");
-      }).then((value) async {
-        await prefs.setString(ID, value.user!.uid);
-        await prefs.setBool(LOGGED_IN, true);
-        isloggedin = true;
-        print(isloggedin.toString());
-        _userModel = await _userServices.getUserById(value.user!.uid);
-      });
-    } catch (e) {
-      print(e.toString());
-      Fluttertoast.showToast(msg: "Incorrect Credentials");
-    }
+    // try {
+    print("here we go");
+    await auth
+        .signInWithEmailAndPassword(
+            email: email.text.trim(), password: password.text.trim())
+        .then((value) async {
+      await prefs.setString(ID, value.user!.uid);
+      await prefs.setBool(LOGGED_IN, true);
+      isloggedin = true;
+      print(isloggedin.toString());
+      _userModel = await _userServices.getUserById(value.user!.uid);
+      print("loadded succeddfully");
+    });
+    //  } catch (e) {
+    // print(e.toString());
+    //Fluttertoast.showToast(msg: "Incorrect Credentials");
+    // }
     return isloggedin;
   }
 
@@ -102,35 +102,34 @@ class UserProvider with ChangeNotifier {
     bool issighnedup = false;
     _status = Status.Authenticating;
     notifyListeners();
-    try {
-      await auth
-          .createUserWithEmailAndPassword(
-              email: email.text.trim(), password: password.text.trim())
-          .onError((error, stackTrace) {
-        throw Fluttertoast.showToast(msg: error.toString());
-      }).then((result) async {
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        await prefs.setString(ID, result.user!.uid);
-        await prefs.setBool(LOGGED_IN, true);
-        await _userServices.createUser(
-          id: result.user!.uid,
-          name: name.text.trim(),
-          email: email.text.trim(),
-          phone: phone.text.trim(),
-          position: {},
-        ).onError((error, stackTrace) {
-          Fluttertoast.showToast(msg: error.toString());
-        });
-        issighnedup = true;
-        await prefs.setString(ID, result.user!.uid);
-        await prefs.setBool(LOGGED_IN, true);
-        //     authProvider.clearController();
-        // changeScreenReplacement(context, LoginScreen());
-      });
-    } catch (e) {
-      print("Email is Registered");
-      Fluttertoast.showToast(msg: e.toString());
-    }
+    //try {
+    print("first step here");
+    await auth
+        .createUserWithEmailAndPassword(
+            email: email.text.trim(), password: password.text.trim())
+        .then((result) async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString(ID, result.user!.uid);
+      await prefs.setBool(LOGGED_IN, true);
+      print("here we go");
+      await _userServices.createUser(
+        id: result.user!.uid,
+        name: name.text.trim(),
+        email: email.text.trim(),
+        phone: countrycode.text.trim() + phone.text.trim(),
+        position: {},
+      );
+      print("Completed here");
+      issighnedup = true;
+      await prefs.setString(ID, result.user!.uid);
+      await prefs.setBool(LOGGED_IN, true);
+      //     authProvider.clearController();
+      // changeScreenReplacement(context, LoginScreen());
+    });
+    //  } catch (e) {
+    print("Email is Registered");
+    // Fluttertoast.showToast(msg: e.toString());
+    //  }
     return issighnedup;
   }
 

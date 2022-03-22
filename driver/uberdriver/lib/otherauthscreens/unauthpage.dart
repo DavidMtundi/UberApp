@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:uberdriver/constants.dart';
+import 'package:uberdriver/helpers/screen_navigation.dart';
 import 'package:uberdriver/otherauthscreens/loginpage.dart';
+import 'package:uberdriver/otherauthscreens/multistage.dart';
 import 'package:uberdriver/otherauthscreens/registerpage.dart';
+import 'package:uberdriver/widgets/custom_btn.dart';
 
 class UnAuth extends StatelessWidget {
   @override
@@ -23,135 +26,70 @@ class UnAuth extends StatelessWidget {
               ),
             ),
             Container(
+              padding: const EdgeInsets.only(top: 20.0, left: 12),
+              decoration: const BoxDecoration(
+                color: Colors.white,
+              ),
+              height: 130.0,
+              child: Row(
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Drive. Deliver.",
+                        style: TextStyle(
+                            fontSize: 30, fontWeight: FontWeight.w800),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        "Earn With Ride Share.",
+                        style: TextStyle(
+                            fontSize: 30, fontWeight: FontWeight.w800),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Container(
               padding: const EdgeInsets.all(20.0),
               decoration: const BoxDecoration(
                 color: Colors.white,
               ),
-              height: 350.0,
+              height: 120.0,
               child: Column(
                 children: <Widget>[
                   Row(
                     children: <Widget>[
                       Expanded(
-                        child: FlatButton(
-                          color: _theme.primaryColor,
-                          child: const Text(
-                            "LOGIN",
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Login()));
-                          },
-                        ),
-                      ),
-                      const SizedBox(width: 40.0),
+                          child: CustomBtn(
+                        text: "Login",
+                        onTap: () {
+                          changeScreen(context, Login());
+                        },
+                        bgColor: Colors.green,
+                        weight: FontWeight.bold,
+                      )),
+                      const SizedBox(width: 20.0),
                       Expanded(
-                        child: FlatButton(
-                          color: facebookColor,
-                          child: const Text(
-                            "REGISTER",
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Register()));
-                          },
-                        ),
-                      )
+                          child: CustomBtn(
+                        text: "Register",
+                        onTap: () {
+                          changeScreen(context, MultiRegister());
+                        },
+                        weight: FontWeight.bold,
+                        bgColor: Colors.white60,
+                        txtColor: Colors.black,
+                      ))
                     ],
                   ),
                   const SizedBox(
                     height: 15.0,
                   ),
-                  Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Divider(
-                          color: dbasicGreyColor,
-                        ),
-                      ),
-                      Container(
-                        child: const Text(
-                          "Or connect with social",
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 15.0,
-                        ),
-                      ),
-                      Expanded(
-                        child: Divider(
-                          color: dbasicGreyColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(top: 15.0),
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 15.0,
-                    ),
-                    height: 45.0,
-                    decoration: BoxDecoration(
-                      color: facebookColor,
-                      borderRadius: BorderRadius.circular(6.0),
-                    ),
-                    child: Row(
-                      children: const <Widget>[
-                        Icon(
-                          FontAwesomeIcons.googlePlusG,
-                          color: Colors.white,
-                        ),
-                        Expanded(
-                          child: Text(
-                            "Login with Google",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(top: 15.0),
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 15.0,
-                    ),
-                    height: 45.0,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: _theme.primaryColor),
-                      borderRadius: BorderRadius.circular(6.0),
-                    ),
-                    child: Row(
-                      children: <Widget>[
-                        Icon(
-                          FontAwesomeIcons.google,
-                          color: _theme.primaryColor,
-                        ),
-                        Expanded(
-                          child: Text(
-                            "Login with Google",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: _theme.primaryColor,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  )
                 ],
               ),
             )

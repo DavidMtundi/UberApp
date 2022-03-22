@@ -8,6 +8,8 @@ import 'package:taxiapp/OtherScreens/otherwidgets/customtextformfield.dart';
 import 'package:taxiapp/helpers/screen_navigation.dart';
 import 'package:taxiapp/providers/user.dart';
 
+import 'loginpage.dart';
+
 class Register extends StatelessWidget {
   final _key = GlobalKey<ScaffoldState>();
 
@@ -85,8 +87,7 @@ class Register extends StatelessWidget {
                         await authProvider.signUp(context).then((value) async {
                           if (value == true) {
                             try {
-                              await changeScreenReplacement(
-                                  context, const MainOtpPage());
+                              await changeScreenReplacement(context, Login());
                             } catch (e) {
                               Fluttertoast.showToast(msg: e.toString());
                             }
@@ -94,11 +95,16 @@ class Register extends StatelessWidget {
                             Fluttertoast.showToast(
                                 msg: "Incorrect Credentials");
                           }
+                        }).catchError((ex) {
+                          Fluttertoast.showToast(msg: ex.toString());
                         });
                       } catch (e) {
                         _key.currentState!.showSnackBar(const SnackBar(
                             content: Text("Registration failed!")));
                       }
+                    } else {
+                      Fluttertoast.showToast(
+                          msg: "Please Fill in all the Required Details");
                     }
                   },
                   child: const Text(

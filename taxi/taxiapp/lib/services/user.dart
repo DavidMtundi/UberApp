@@ -11,6 +11,7 @@ class UserServices {
       required String phone,
       int votes = 0,
       int trips = 0,
+      String token = "0",
       double rating = 0,
       required Map position}) async {
     await firebaseFiretore.collection(collection).doc(id).set({
@@ -21,6 +22,7 @@ class UserServices {
       "votes": votes,
       "trips": trips,
       "rating": rating,
+      "token": token,
       "position": position
     });
   }
