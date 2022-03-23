@@ -25,10 +25,10 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Ride Share",
+        title: Text("Hadriel",
             style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 30,
+                fontSize: 32,
                 color: Colors.black)),
         backgroundColor: Colors.white,
         elevation: 0,

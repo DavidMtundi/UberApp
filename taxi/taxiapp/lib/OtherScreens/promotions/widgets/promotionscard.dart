@@ -42,7 +42,7 @@ class PromotionCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   const Text(
-                    "10% Off your next ride within Lagos",
+                    "10% Off your next ride within Nakuru",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18.0,

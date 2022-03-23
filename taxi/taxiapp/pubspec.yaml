@@ -68,7 +68,7 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/icon/playstore.png"
+  image_path: "assets/icon/hadriel.png"
 
   flutter_test:
     sdk: flutter

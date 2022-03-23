@@ -191,11 +191,15 @@ class UserProvider with ChangeNotifier {
     if (!loggedIn) {
       _status = Status.Unauthenticated;
     } else {
-      if (auth.currentUser != null) {
-        _user = auth.currentUser!;
-        _status = Status.Authenticated;
+      try {
+        if (auth.currentUser != null) {
+          _user = auth.currentUser!;
+          _status = Status.Authenticated;
 
-        _userModel = await _userServices.getUserById(auth.currentUser!.uid);
+          _userModel = await _userServices.getUserById(auth.currentUser!.uid);
+        }
+      } catch (e) {
+        Fluttertoast.showToast(msg: "Error Occured While Fetching Data");
       }
     }
     notifyListeners();

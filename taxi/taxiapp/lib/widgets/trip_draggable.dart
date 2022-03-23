@@ -174,7 +174,7 @@ class TripWidget extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(12),
                       child: CustomText(
-                        text: "\$${appState.ridePrice}",
+                        text: "Kshs${appState.ridePrice}",
                         size: 18,
                         weight: FontWeight.bold,
                       ),

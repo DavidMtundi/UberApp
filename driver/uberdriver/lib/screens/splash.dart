@@ -15,7 +15,7 @@ class _SplashState extends State<Splash> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image.asset("assets/images/lg.jpeg"),
+            Image.asset("assets/images/Hadriel.jpg"),
             Loading(),
           ],
         ));

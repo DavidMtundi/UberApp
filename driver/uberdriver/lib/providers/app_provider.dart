@@ -97,13 +97,7 @@ class AppStateProvider with ChangeNotifier {
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       handleOnLaunch(message.data);
     });
-//     fcm.configure(
-// //      this callback is used when the app runs on the foreground
-//         onMessage: handleOnMessage,
-// //        used when the app is closed completely and is launched using the notification
-//         onLaunch: handleOnLaunch,
-// //        when its on the background and opened using the notification drawer
-//         onResume: handleOnResume);
+
     _getUserLocation();
     Geolocator.getPositionStream().listen(_userCurrentLocationUpdate);
   }

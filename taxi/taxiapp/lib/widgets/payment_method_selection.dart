@@ -45,7 +45,7 @@ class PaymentMethodSelectionWidget extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: CustomText(
-                    text: "How do you want to pay,\n\$${appState.ridePrice}",
+                    text: "How do you want to pay,\nKshs${appState.ridePrice}",
                     size: 24,
                     weight: FontWeight.bold,
                   ),

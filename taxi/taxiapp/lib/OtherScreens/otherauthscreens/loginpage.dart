@@ -138,18 +138,20 @@ class _LoginState extends State<Login> {
             child: TextButton(
               onPressed: () async {
                 if (_loginformKey.currentState!.validate()) {
-                  //  try {
-                  await authProvider.signIn().then((value) async {
-                    if (value == true) {
-                      print("the user id is registered already");
-                      await changeScreenReplacement(context, MainPage());
-                      // .then((value) => authProvider.clearController());
-                    } else {
-                      Fluttertoast.showToast(msg: "Incorrect Credentials");
-                      print("the user id is not registered already");
-                    }
-                  });
-                  //  } catch (e) {
+                  try {
+                    await authProvider.signIn().then((value) async {
+                      if (value == true) {
+                        print("the user id is registered already");
+                        await changeScreenReplacement(context, MainPage());
+                        // .then((value) => authProvider.clearController());
+                      } else {
+                        Fluttertoast.showToast(msg: "Incorrect Credentials");
+                        print("the user id is not registered already");
+                      }
+                    });
+                  } catch (e) {
+                    Fluttertoast.showToast(msg: "Incorrect Credentials");
+                  }
                   // ?
                 }
               },

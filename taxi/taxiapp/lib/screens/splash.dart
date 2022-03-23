@@ -24,15 +24,11 @@ class _SplashState extends State<Splash> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.black45,
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Image.asset(
-              "assets/icon/playstore.png",
-              width: 200,
-            ),
-            Loading(),
-          ],
+        body: Expanded(
+          child: Image.asset(
+            "assets/icon/playstore.jpeg",
+            width: 200,
+          ),
         ));
   }
 }

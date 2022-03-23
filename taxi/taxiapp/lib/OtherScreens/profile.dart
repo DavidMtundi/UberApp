@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:taxiapp/OtherScreens/otherconstants/constants.dart';
 import 'package:taxiapp/OtherScreens/otherwidgets/customtextformfield.dart';
 import 'package:taxiapp/providers/user.dart';
 
