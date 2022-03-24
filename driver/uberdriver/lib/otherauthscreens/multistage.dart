@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:uberdriver/helpers/screen_navigation.dart';
+import 'package:uberdriver/otherauthscreens/loginpage.dart';
 import 'package:uberdriver/otherauthscreens/widgets/otherauthwidgets.dart';
 
 class MultiRegister extends StatefulWidget {
@@ -10,51 +12,41 @@ class MultiRegister extends StatefulWidget {
 
 class _MultiRegisterState extends State<MultiRegister> {
   int _activeStepIndex = 0;
-  TextEditingController firstname = TextEditingController();
-  TextEditingController lastname = TextEditingController();
-  TextEditingController work = TextEditingController();
-
-  TextEditingController fathername = TextEditingController();
-
-  TextEditingController mothername = TextEditingController();
-
-  TextEditingController age = TextEditingController();
-
-  TextEditingController email = TextEditingController();
-  TextEditingController pass = TextEditingController();
-  TextEditingController address = TextEditingController();
-  TextEditingController pincode = TextEditingController();
-  String _selectedDate = '';
-  String _dateCount = '';
-  String _range = '';
-  String _rangeCount = '';
 
   /// The method for [DateRangePickerSelectionChanged] callback, which will be
   /// called whenever a selection changed on the date picker widget.
+  Widget testContainer(int value) {
+    return Container();
+  }
 
   List<Step> stepList() => [
         Step(
           state: _activeStepIndex <= 0 ? StepState.editing : StepState.complete,
           isActive: _activeStepIndex >= 0,
           title: const Text('1'),
+          // content: testContainer(1)
           content: screen2(context),
         ),
         Step(
           state: _activeStepIndex <= 0 ? StepState.editing : StepState.complete,
           isActive: _activeStepIndex >= 0,
           title: const Text('2'),
+          //content: testContainer(1)
           content: screen3(context),
         ),
         Step(
           state: _activeStepIndex <= 1 ? StepState.editing : StepState.complete,
           isActive: _activeStepIndex >= 1,
           title: const Text('3'),
+          //content: testContainer(1)
+
           content: screen4(context),
         ),
         Step(
             state: StepState.complete,
             isActive: _activeStepIndex >= 2,
             title: const Text('4'),
+            //  content: testContainer(1))
             content: screen5(context)),
       ];
 
@@ -63,7 +55,7 @@ class _MultiRegisterState extends State<MultiRegister> {
     final ThemeData _theme = Theme.of(context);
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      // resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: _theme.scaffoldBackgroundColor,
         automaticallyImplyLeading: false,
@@ -78,7 +70,7 @@ class _MultiRegisterState extends State<MultiRegister> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(left: 14.0),
+        padding: EdgeInsets.all(10),
         child: Stepper(
           type: StepperType.horizontal,
           currentStep: _activeStepIndex,
@@ -90,6 +82,7 @@ class _MultiRegisterState extends State<MultiRegister> {
               });
             } else {
               print('Submited');
+              changeScreenReplacement(context, Login());
             }
           },
           onStepCancel: () {

@@ -11,7 +11,7 @@ class UserServices {
       required String phone,
       int votes = 0,
       int trips = 0,
-      String token = "0",
+      required String token,
       double rating = 0,
       required Map position}) async {
     await firebaseFiretore.collection(collection).doc(id).set({
@@ -33,6 +33,7 @@ class UserServices {
 
   Future<UserModel> getUserById(String id) =>
       firebaseFiretore.collection(collection).doc(id).get().then((doc) {
+        print("not much usermdel.fromsnapshot(doc)");
         return UserModel.fromSnapshot(doc);
       });
 

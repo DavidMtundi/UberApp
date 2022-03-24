@@ -7,14 +7,22 @@ import 'package:taxiapp/OtherScreens/otherconstants/formValidations.dart';
 import 'package:taxiapp/OtherScreens/otherwidgets/customtextformfield.dart';
 import 'package:taxiapp/helpers/screen_navigation.dart';
 import 'package:taxiapp/providers/user.dart';
+import 'package:taxiapp/screens/home.dart';
+import 'package:taxiapp/widgets/customloginScreen.dart';
 
 import 'loginpage.dart';
 
-class Register extends StatelessWidget {
+class Register extends StatefulWidget {
+  @override
+  State<Register> createState() => _RegisterState();
+}
+
+class _RegisterState extends State<Register> {
   final _key = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
+    bool isloading = false;
     UserProvider authProvider = Provider.of<UserProvider>(context);
 
     final ThemeData _theme = Theme.of(context);
@@ -112,7 +120,53 @@ class Register extends StatelessWidget {
                     style: TextStyle(color: Colors.white, fontSize: 16.0),
                   ),
                 ),
-              )
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Center(
+                child: Text("Or"),
+              ),
+              Container(
+                height: 50,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(50)),
+                margin: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+                child: Center(
+                  child: isloading
+                      ? CustomLoadingContainer()
+                      : TextButton.icon(
+                          onPressed: () async {
+                            setState(() {
+                              isloading = true;
+                            });
+
+                            try {
+                              if (await authProvider.signInWithGoogle() ==
+                                  true) {
+                                changeScreenReplacement(
+                                    context, MyHomePage(title: 'title'));
+                              } else {
+                                Fluttertoast.showToast(
+                                    msg: "Problem Signing in");
+                              }
+                            } catch (e) {
+                              setState(() {
+                                isloading = false;
+                              });
+                            }
+
+                            //AuthService().handleAuth();
+                          },
+                          label: const Text(
+                            'Google SignIn',
+                            style: TextStyle(fontSize: 16, color: Colors.black),
+                          ),
+                          icon: const Icon(Icons.arrow_forward_rounded),
+                        ),
+                ),
+              ),
             ],
           ),
         ),

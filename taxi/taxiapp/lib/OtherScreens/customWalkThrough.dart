@@ -10,9 +10,10 @@ class WalkThrough extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final UserProvider _walkthroughProvider =
-        Provider.of<UserProvider>(context, listen: false);
+        Provider.of<UserProvider>(context);
+    UserProvider.initialize();
     return Scaffold(
-      body: SafeArea( 
+      body: SafeArea(
         child: Container(
           color: Colors.white70,
           child: Column(

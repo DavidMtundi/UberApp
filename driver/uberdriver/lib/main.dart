@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:uberdriver/customWalkThrough.dart';
 import 'package:uberdriver/helpers/router.dart';
 import 'package:uberdriver/otherauthscreens/loginpage.dart';
+import 'package:uberdriver/otherauthscreens/multistage.dart';
 import 'package:uberdriver/otherauthscreens/unauthpage.dart';
 import 'package:uberdriver/otherconstants/themedart.dart';
 import 'package:uberdriver/providers/app_provider.dart';
@@ -63,14 +64,18 @@ class MyApp extends StatelessWidget {
             case Status.Uninitialized:
               return Splash();
             case Status.Unauthenticated:
+              //return MultiRegister();
               return WalkThrough();
             case Status.Authenticating:
+              // return MultiRegister();
               return UnAuth();
             case Status.Authenticated:
+              //return MultiRegister();
               return MyHomePage(
                 title: "Home",
               );
             default:
+              // return MultiRegister();
               return WalkThrough();
           }
         }

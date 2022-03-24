@@ -32,7 +32,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var scaffoldState = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> scaffoldState = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -51,12 +51,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    UserProvider userProvider = Provider.of<UserProvider>(context);
     AppStateProvider appState = Provider.of<AppStateProvider>(context);
     return SafeArea(
       child: Scaffold(
         key: scaffoldState,
-        //drawer: AppDrawer(),
+        drawer: AppDrawer(),
         body: Stack(
           children: [
             MapScreen(scaffoldState),
@@ -178,39 +177,52 @@ class _MapScreenState extends State<MapScreen> {
   TextEditingController destinationController = TextEditingController();
   Color darkBlue = Colors.black;
   Color grey = Colors.grey;
-  GlobalKey<ScaffoldState> scaffoldSate = GlobalKey<ScaffoldState>();
+  //GlobalKey<ScaffoldState> scaffoldSate = GlobalKey<ScaffoldState>();
+//  final GlobalKey<ScaffoldState> scaffoldKey;
 
   @override
   void initState() {
     super.initState();
-    scaffoldSate = widget.scaffoldState;
+    // scaffoldSate = widget.scaffoldState;
   }
 
   @override
   Widget build(BuildContext context) {
     AppStateProvider appState = Provider.of<AppStateProvider>(context);
-    appState.refreshData();
+    //appState.refreshData();
 
     UserProvider userProvider = Provider.of<UserProvider>(context);
 
-    return appState.center == null
-        ? Loading()
-        : Stack(
-            children: <Widget>[
-              GoogleMap(
-                initialCameraPosition:
-                    CameraPosition(target: appState.center, zoom: 15),
-                onMapCreated: appState.onCreate,
-                myLocationEnabled: true,
-                mapType: MapType.normal,
-                compassEnabled: true,
-                rotateGesturesEnabled: true,
-                markers: appState.markers,
-                onCameraMove: appState.onCameraMove,
-                polylines: appState.poly,
-              ),
-            ],
-          );
+    return SafeArea(
+      child: Scaffold(
+          body: appState.center == null
+              ? Loading()
+              : Stack(
+                  children: <Widget>[
+                    GoogleMap(
+                      initialCameraPosition:
+                          CameraPosition(target: appState.center, zoom: 15),
+                      onMapCreated: appState.onCreate,
+                      myLocationEnabled: true,
+                      mapType: MapType.normal,
+                      compassEnabled: true,
+                      rotateGesturesEnabled: true,
+                      markers: appState.markers,
+                      onCameraMove: appState.onCameraMove,
+                      polylines: appState.poly,
+                    ),
+                    Positioned(
+                        child: IconButton(
+                            icon: Icon(
+                              Icons.menu,
+                              size: 40,
+                            ),
+                            onPressed: () {
+                              widget.scaffoldState.currentState!.openDrawer();
+                            }))
+                  ],
+                )),
+    );
   }
 
   Future<Null> displayPrediction(Prediction p) async {

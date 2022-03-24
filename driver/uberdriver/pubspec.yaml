@@ -45,15 +45,17 @@ dependencies:
   geolocator: ^8.2.0
 
   geocoding: ^2.0.2
+  advance_pdf_viewer: ^2.0.1
   google_maps_flutter: null
+  document_scanner_flutter: ^0.2.7
   google_maps_webservice: null
   http: null
   location: null
   modal_bottom_sheet: ^0.2.2
+  permission_handler: ^9.2.0
   percent_indicator: ^4.0.0
   provider: null
   shared_preferences: ^2.0.13
-  permission_handler: ^9.0.1
   uuid: null
   bubble: ^1.2.1
 

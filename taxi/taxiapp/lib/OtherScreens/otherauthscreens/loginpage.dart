@@ -10,6 +10,7 @@ import 'package:taxiapp/OtherScreens/otherwidgets/customtextformfield.dart';
 import 'package:taxiapp/helpers/screen_navigation.dart';
 import 'package:taxiapp/providers/user.dart';
 import 'package:taxiapp/screens/home.dart';
+import 'package:taxiapp/widgets/customloginScreen.dart';
 
 class Login extends StatefulWidget {
   Login({Key? key}) : super(key: key);
@@ -142,7 +143,11 @@ class _LoginState extends State<Login> {
                     await authProvider.signIn().then((value) async {
                       if (value == true) {
                         print("the user id is registered already");
-                        await changeScreenReplacement(context, MainPage());
+                        await changeScreenReplacement(
+                            context,
+                            MyHomePage(
+                              title: '',
+                            ));
                         // .then((value) => authProvider.clearController());
                       } else {
                         Fluttertoast.showToast(msg: "Incorrect Credentials");
@@ -160,7 +165,52 @@ class _LoginState extends State<Login> {
                 style: TextStyle(color: Colors.white, fontSize: 16.0),
               ),
             ),
-          )
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Center(
+            child: Text("Or"),
+          ),
+          Container(
+            height: 50,
+            decoration: BoxDecoration(
+                color: Colors.white, borderRadius: BorderRadius.circular(50)),
+            margin: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+            child: Center(
+              child: isloading
+                  ? CustomLoadingContainer()
+                  : TextButton.icon(
+                      onPressed: () async {
+                        setState(() {
+                          isloading = true;
+                        });
+
+                        try {
+                          await authProvider.signInWithGoogle().then((value) {
+                            if (value == true) {
+                              changeScreenReplacement(
+                                  context, MyHomePage(title: 'title'));
+                            } else {
+                              Fluttertoast.showToast(msg: "Something Wrong");
+                            }
+                          });
+                        } catch (e) {
+                          setState(() {
+                            isloading = false;
+                          });
+                        }
+
+                        //AuthService().handleAuth();
+                      },
+                      label: const Text(
+                        'Google SignIn',
+                        style: TextStyle(fontSize: 16, color: Colors.black),
+                      ),
+                      icon: const Icon(Icons.arrow_forward_rounded),
+                    ),
+            ),
+          ),
         ],
       ),
     );

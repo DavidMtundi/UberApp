@@ -55,7 +55,7 @@ class RideCard extends StatelessWidget {
                       width: 5.0,
                     ),
                     const Text(
-                      "Home - Awolowo Rd.",
+                      "Nairobi Rd.",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
@@ -76,7 +76,7 @@ class RideCard extends StatelessWidget {
                       height: 5.0,
                     ),
                     Text(
-                      "\$45.00",
+                      "Kshs45.00",
                       style: TextStyle(
                         fontSize: 24.0,
                         color: _theme.primaryColor,

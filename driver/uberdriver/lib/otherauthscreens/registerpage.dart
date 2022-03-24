@@ -5,6 +5,7 @@ import 'package:uberdriver/formValidations.dart';
 import 'package:uberdriver/helpers/screen_navigation.dart';
 import 'package:uberdriver/otherauthscreens/carRegistration.dart';
 import 'package:uberdriver/otherauthscreens/loginpage.dart';
+import 'package:uberdriver/otherauthscreens/multistage.dart';
 import 'package:uberdriver/otherauthscreens/phoneauthpackage.dart';
 import 'package:uberdriver/providers/app_provider.dart';
 import 'package:uberdriver/providers/user.dart';
@@ -83,29 +84,32 @@ class Register extends StatelessWidget {
                 child: FlatButton(
                   color: _theme.primaryColor,
                   onPressed: () async {
-                    changeScreen(context, CarRegistration());
-                    // if (_sighnupKey.currentState!.validate()) {
-                    //   try {
-                    //     await authProvider
-                    //         .signUp(context, app.position)
-                    //         .then((value) async {
-                    //       if (value == true) {
-                    //         try {
-                    //           await changeScreenReplacement(
-                    //               context, const MainOtpPage());
-                    //         } catch (e) {
-                    //           Fluttertoast.showToast(msg: e.toString());
-                    //         }
-                    //       } else {
-                    //         Fluttertoast.showToast(
-                    //             msg: "Incorrect Credentials");
-                    //       }
-                    //     });
-                    //   } catch (e) {
-                    //     _key.currentState!.showSnackBar(const SnackBar(
-                    //         content: Text("Registration failed!")));
-                    //   }
-                    // }
+
+                    //save data to the database
+                   
+                    if (_sighnupKey.currentState!.validate()) {
+                      try {
+                        await authProvider
+                            .signUp(context, app.position)
+                            .then((value) async {
+                          if (value == true) {
+                            try {
+                               changeScreen(context, MultiRegister());
+                              // await changeScreenReplacement(
+                              //     context, const MainOtpPage());
+                            } catch (e) {
+                              Fluttertoast.showToast(msg: e.toString());
+                            }
+                          } else {
+                            Fluttertoast.showToast(
+                                msg: "Incorrect Credentials");
+                          }
+                        });
+                      } catch (e) {
+                        _key.currentState!.showSnackBar(const SnackBar(
+                            content: Text("Registration failed!")));
+                      }
+                    }
                   },
                   child: const Text(
                     "SIGN UP",

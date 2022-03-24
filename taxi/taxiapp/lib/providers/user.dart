@@ -6,11 +6,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:taxiapp/helpers/constants.dart';
 import 'package:taxiapp/helpers/screen_navigation.dart';
 import 'package:taxiapp/models/user.dart';
+import 'package:taxiapp/providers/app_state.dart';
 import 'package:taxiapp/screens/login.dart';
 import 'package:taxiapp/services/user.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:taxiapp/widgets/loading.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 enum Status { Uninitialized, Authenticated, Authenticating, Unauthenticated }
 
@@ -68,6 +70,69 @@ class UserProvider with ChangeNotifier {
   UserModel get userModel => _userModel;
   Status get status => _status;
   //User get user => _user;
+  final GoogleSignIn googleSignIn = GoogleSignIn();
+
+  Future<bool> signInWithGoogle() async {
+    // Trigger the authentication flow
+    print("first step");
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    bool issignedup = false;
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+    print("second step");
+    _status = Status.Authenticating;
+    notifyListeners();
+    await FirebaseAuth.instance
+        .signInWithCredential(credential)
+        .then((value) async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString(ID, value.user!.uid);
+      await prefs.setBool(LOGGED_IN, true);
+      print("here we go");
+      await _userServices.createUser(
+        id: await value.user!.uid,
+        name: await value.user!.displayName.toString(),
+        email: await value.user!.email!.toString(),
+        phone: value.user!.phoneNumber != null
+            ? await value.user!.phoneNumber.toString()
+            : "null",
+        token: value.user!.phoneNumber != null
+            ? await value.user!.photoURL!.toString()
+            : "null",
+        position: {},
+      ).then((value) async {
+        issignedup = true;
+        issignedup = true;
+        await prefs.setString(ID, value.user!.uid);
+        await prefs.setBool(LOGGED_IN, true);
+
+        //  print(value.)
+        //   print(isloggedin.toString());
+
+        print("loadded succeddfully");
+      }).onError((error, stackTrace) {
+        print(error.toString());
+      });
+      // _status = Status.Authenticating;
+      notifyListeners();
+      await AppStateProvider().refreshData();
+      print(value.user!.uid.toString());
+      _userModel = await _userServices.getUserById(value.user!.uid);
+      print("Completed here");
+    }).onError((error, stackTrace) {
+      print(error.toString());
+    });
+    return issignedup;
+    // Once signed in, return the UserCredential
+    //return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
 
   Future<bool> signIn() async {
     bool isloggedin = false;
@@ -117,6 +182,7 @@ class UserProvider with ChangeNotifier {
         name: name.text.trim(),
         email: email.text.trim(),
         phone: countrycode.text.trim() + phone.text.trim(),
+        token: "0",
         position: {},
       );
       print("Completed here");
@@ -137,6 +203,8 @@ class UserProvider with ChangeNotifier {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     auth.signOut();
+    googleSignIn.signOut();
+
     _status = Status.Unauthenticated;
     await prefs.setString(ID, "");
     await prefs.setBool(LOGGED_IN, false);

@@ -48,61 +48,79 @@ class AppDrawer extends StatelessWidget {
     return Container(
       color: Colors.white,
       width: MediaQuery.of(context).size.width -
-          (MediaQuery.of(context).size.width * 0.2),
+          (MediaQuery.of(context).size.width * 0.3),
       child: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 25.0,
-              ),
-              height: 200.0,
-              color: _theme.primaryColor,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        userProvider.userModel.name,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 19.0,
-                          fontWeight: FontWeight.bold,
-                        ),
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).pushNamed(ProfileRoute);
+              },
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10.0,
+                ),
+                height: 250.0,
+                color: _theme.primaryColor,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Center(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(40),
+                        child: Container(
+                            height: 80,
+                            child: FadeInImage(
+                              image: NetworkImage(
+                                  userProvider.userModel.tokenvalue),
+                              placeholder: AssetImage("assets/images/user.png"),
+                              imageErrorBuilder: (context, error, stackTrace) {
+                                return Image.asset('assets/images/user.png',
+                                    fit: BoxFit.fitWidth);
+                              },
+                              fit: BoxFit.fitWidth,
+                            )),
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).pushNamed(ProfileRoute);
-                        },
-                        child: const Icon(
-                          Icons.chevron_right,
-                          color: Colors.white,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          userProvider.userModel.name,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 19.0,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      )
-                    ],
-                  ),
-                  Text(
-                    userProvider.userModel.email,
-                    style: const TextStyle(
-                      color: Colors.white60,
-                      fontSize: 15.0,
+                      ],
                     ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    userProvider.userModel.phone,
-                    style: const TextStyle(
-                      color: Colors.white60,
-                      fontSize: 15.0,
+                    Text(
+                      userProvider.userModel.email,
+                      style: const TextStyle(
+                        color: Colors.white60,
+                        fontSize: 15.0,
+                      ),
                     ),
-                  )
-                ],
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          userProvider.userModel.phone,
+                          style: const TextStyle(
+                            color: Colors.white60,
+                            fontSize: 15.0,
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
             Expanded(

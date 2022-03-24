@@ -6,7 +6,9 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:taxiapp/OtherScreens/favouritesscreens/updatefavourite.dart';
 import 'package:taxiapp/helpers/constants.dart';
+import 'package:taxiapp/helpers/screen_navigation.dart';
 import 'package:taxiapp/helpers/style.dart';
 import 'package:google_place/google_place.dart' as gp;
 
@@ -64,6 +66,8 @@ class _DestinationSelectionWidgetState
                           context: context,
                           apiKey: GOOGLE_MAPS_API_KEY,
                           radius: 10000000,
+                          decoration:
+                              InputDecoration(suffixIcon: Icon(Icons.search)),
                           types: [],
                           strictbounds: false,
                           mode: Mode.overlay, // Mode.fullscreen
@@ -166,6 +170,29 @@ class _DestinationSelectionWidgetState
                   ),
                 ),
               ),
+              GestureDetector(
+                onTap: () async {
+                  Navigator.of(context);
+                  await changeScreen(context, UpdateFavorite());
+                },
+                child: ListTile(
+                  leading: CircleAvatar(
+                    backgroundColor: Color.fromARGB(255, 13, 28, 233),
+                    child: const Icon(
+                      Icons.add,
+                      color: white,
+                    ),
+                  ),
+                  title: const Text(
+                    "Add Saved Locations",
+                    style: TextStyle(color: Colors.black87),
+                  ),
+                  subtitle: const Text(
+                    "Save Locations ...i.e Home, Work...",
+                    style: TextStyle(color: Colors.black87),
+                  ),
+                ),
+              ),
               ListTile(
                 leading: CircleAvatar(
                   backgroundColor: Colors.deepOrange[300],
@@ -174,6 +201,21 @@ class _DestinationSelectionWidgetState
                     color: white,
                   ),
                 ),
+                // trailing: GestureDetector(
+                //   child: Container(
+                //     child: CircleAvatar(
+                //       backgroundColor: Colors.deepOrange[300],
+                //       child: const Icon(
+                //         Icons.edit,
+                //         color: white,
+                //       ),
+                //     ),
+                //   ),
+                //   onTap: () async {
+                //     Navigator.of(context);
+                //     await changeScreen(context, UpdateFavorite());
+                //   },
+                // ),
                 title: const Text(
                   "Home",
                   style: TextStyle(color: Colors.black87),

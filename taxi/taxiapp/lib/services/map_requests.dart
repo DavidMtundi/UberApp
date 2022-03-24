@@ -22,6 +22,21 @@ class GoogleMapsServices {
 
     return cordinates;
   }
+  Future<List<double>> getNameandAddress(String placeid) async {
+    List<double> cordinates = [];
+    String url =
+        "https://maps.googleapis.com/maps/api/geocode/json?place_id=${placeid}&key=${GOOGLE_MAPS_API_KEY}";
+    http.Response response = await http.get(Uri.parse(url));
+    Map values = jsonDecode(response.body);
+
+    double lat = values["results"][0]["geometry"]["location"]["lat"];
+    print(lat);
+    double lng = values["results"][0]["geometry"]["location"]["lng"];
+    cordinates.add(lat);
+    cordinates.add(lng);
+
+    return cordinates;
+  }
 
   Future<RouteModel> getRouteByCoordinates(LatLng l1, LatLng l2) async {
     String url =

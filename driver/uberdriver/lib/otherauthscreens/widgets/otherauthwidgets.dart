@@ -9,38 +9,69 @@ import 'package:uberdriver/widgets/custom_text.dart';
 final GlobalKey<FormState> screen2key = GlobalKey<FormState>();
 final GlobalKey<FormState> screen3key = GlobalKey<FormState>();
 final GlobalKey<FormState> screen4key = GlobalKey<FormState>();
+final GlobalKey<FormState> screen5key = GlobalKey<FormState>();
 
 Widget screen2(BuildContext context) {
-  final UserProvider authProvider = Provider.of<UserProvider>(context);
+  final UserProvider authProvider =
+      Provider.of<UserProvider>(context, listen: false);
 
   return Container(
     child: Form(
       key: screen2key,
       child: Column(
         children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CustomText(
+                text: "Vehicle Details",
+                size: 29,
+                weight: FontWeight.w800,
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Row(
+            children: [
+              Flexible(
+                child: Center(
+                  child: CustomText(
+                    text: "Please Provide your Vehicle details",
+                    size: 18,
+                    weight: FontWeight.normal,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 20,
+          ),
           CustomTextFormField(
             suffixIcon: const Icon(Icons.precision_manufacturing_rounded),
             formvalidator: validatename,
-            givencontroller: authProvider.name,
+            givencontroller: authProvider.vmanufacture,
             hintText: "Manufacture of your boda/vehicle",
           ),
           const SizedBox(
             height: 20.0,
           ),
           CustomTextFormField(
-            suffixIcon: const Icon(Icons.email),
-            formvalidator: validateemail,
+            suffixIcon: const Icon(Icons.date_range_rounded),
+            // formvalidator: validateemail,
             hintText: "Vehicle Year of Manufacture",
-            givencontroller: authProvider.email,
+            givencontroller: authProvider.vyearofmanufacture,
           ),
           const SizedBox(
             height: 20.0,
           ),
           CustomTextFormField(
             suffixIcon: const Icon(Icons.model_training_outlined),
-            formvalidator: validateemail,
+            //  formvalidator: validateemail,
             hintText: "Vehicle Model",
-            givencontroller: authProvider.email,
+            givencontroller: authProvider.vmodel,
           ),
           const SizedBox(
             height: 20.0,
@@ -48,7 +79,7 @@ Widget screen2(BuildContext context) {
           CustomTextFormField(
             suffixIcon: const Icon(Icons.area_chart_outlined),
             hintText: "Number Plate",
-            givencontroller: authProvider.countrycode,
+            givencontroller: authProvider.vnumberplate,
           ),
           const SizedBox(
             height: 20.0,
@@ -57,7 +88,7 @@ Widget screen2(BuildContext context) {
             suffixIcon: const Icon(Icons.color_lens_outlined),
             formvalidator: validatephone,
             hintText: "Colour",
-            givencontroller: authProvider.phone,
+            givencontroller: authProvider.vcolor,
           ),
         ],
       ),
@@ -66,8 +97,8 @@ Widget screen2(BuildContext context) {
 }
 
 Widget screen3(BuildContext context) {
-  final UserProvider authProvider = Provider.of<UserProvider>(context);
-
+  final UserProvider authProvider =
+      Provider.of<UserProvider>(context, listen: false);
   return Container(
     child: Form(
       key: screen3key,
@@ -104,9 +135,9 @@ Widget screen3(BuildContext context) {
           ),
           CustomTextFormField(
             suffixIcon: const Icon(Icons.email),
-            formvalidator: validateemail,
+            // formvalidator: validateemail,
             hintText: "National Id Number",
-            givencontroller: authProvider.email,
+            givencontroller: authProvider.vnationalid,
           ),
           CustomText(
             text:
@@ -120,14 +151,16 @@ Widget screen3(BuildContext context) {
           CustomTextFormField(
             suffixIcon: const Icon(Icons.area_chart_outlined),
             hintText: "Driver Licence Reference Number",
-            givencontroller: authProvider.countrycode,
+            givencontroller: authProvider.vdriverlicense,
           ),
           Row(
             children: [
-              CustomText(
-                text: "License Number on your Driver's Documents",
-                weight: FontWeight.w400,
-                color: Colors.black38,
+              Flexible(
+                child: CustomText(
+                  text: "License Number on your Driver's Documents",
+                  weight: FontWeight.w400,
+                  color: Colors.black38,
+                ),
               ),
             ],
           ),
@@ -138,20 +171,23 @@ Widget screen3(BuildContext context) {
 }
 
 Widget screen4(BuildContext context) {
-  final UserProvider authProvider = Provider.of<UserProvider>(context);
+  final UserProvider authProvider =
+      Provider.of<UserProvider>(context, listen: false);
 
   return Container(
     child: Form(
       key: screen4key,
       child: Column(
         children: <Widget>[
-          Center(
-            //mainAxisAlignment: MainAxisAlignment.center,
-            child: CustomText(
-              text: "Documents",
-              size: 29,
-              weight: FontWeight.w800,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CustomText(
+                text: "Documents",
+                size: 29,
+                weight: FontWeight.w800,
+              ),
+            ],
           ),
           SizedBox(
             height: 20,
@@ -176,7 +212,13 @@ Widget screen4(BuildContext context) {
           CustomLargeContainer(
             header: "National ID",
             btnName: "Upload File",
-            btnfc: () {},
+            btnfc: () {
+              try {
+                authProvider.openImageScanner(context);
+              } catch (e) {
+                print(e.toString());
+              }
+            },
             customtext:
                 "Upload a Clear Kenyan National ID (Front side display details).",
           ),
@@ -186,16 +228,21 @@ Widget screen4(BuildContext context) {
           CustomLargeContainer(
             header: "Driver Profile Photo",
             btnName: "Upload File",
-            btnfc: () {},
+            btnfc: () {
+              try {
+                authProvider.openImageScanner(context);
+              } catch (e) {
+                print(e.toString());
+              }
+            },
             customtext:
                 "Upload your portrait photo on a clear plain background. Remember to smile too.",
           ),
           Container(
             child: Column(
               children: [
-                Flexible(
-                    child: Text(
-                        "Upload a Clear picture of your Kenyan Driving License, or International Dl. Ensure the Expiry Date is visible")),
+                Text(
+                    "Upload a Clear picture of your Kenyan Driving License, or International Dl. Ensure the Expiry Date is visible"),
                 SizedBox(
                   height: 10,
                 ),
@@ -224,11 +271,12 @@ Widget screen4(BuildContext context) {
 }
 
 Widget screen5(BuildContext context) {
-  final UserProvider authProvider = Provider.of<UserProvider>(context);
+  final UserProvider authProvider =
+      Provider.of<UserProvider>(context, listen: false);
 
   return Container(
     child: Form(
-      key: screen4key,
+      key: screen5key,
       child: Column(
         children: <Widget>[
           Center(
@@ -279,9 +327,8 @@ Widget screen5(BuildContext context) {
           Container(
             child: Column(
               children: [
-                Flexible(
-                    child: Text(
-                        "Upload a Clear picture of your Kenyan Driving License, or International Dl. Ensure the Expiry Date is visible")),
+                Text(
+                    "Upload a Clear picture of your Kenyan Driving License, \n or International Dl. \n Ensure the Expiry Date is visible"),
                 SizedBox(
                   height: 10,
                 ),

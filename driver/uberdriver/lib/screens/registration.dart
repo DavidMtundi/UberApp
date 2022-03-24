@@ -70,7 +70,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                               border: InputBorder.none,
                               labelStyle: TextStyle(color: white),
                               labelText: "Name",
-                              hintText: "eg: Santos Enoque",
+                              hintText: "eg: any name",
                               icon: Icon(
                                 Icons.person,
                                 color: white,

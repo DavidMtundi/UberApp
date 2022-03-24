@@ -1,4 +1,8 @@
 import 'dart:async';
+import 'dart:io';
+import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
+import 'package:document_scanner_flutter/configs/configs.dart';
+import 'package:document_scanner_flutter/document_scanner_flutter.dart';
 import 'package:uberdriver/helpers/constants.dart';
 import 'package:uberdriver/models/user.dart';
 import 'package:uberdriver/services/user.dart';
@@ -47,6 +51,19 @@ class UserProvider with ChangeNotifier {
   TextEditingController expiry = TextEditingController();
   TextEditingController cvv = TextEditingController();
   TextEditingController message = TextEditingController();
+
+  //vehicle details
+  TextEditingController vmanufacture = TextEditingController();
+  TextEditingController vyearofmanufacture = TextEditingController();
+  TextEditingController vmodel = TextEditingController();
+  TextEditingController vnumberplate = TextEditingController();
+  TextEditingController vcolor = TextEditingController();
+
+  //legal and pricing details
+  TextEditingController vnationalid = TextEditingController();
+  TextEditingController vdriverlicense = TextEditingController();
+
+  //documents
 
   UserProvider.initialize() {
     _fireSetUp();
@@ -160,6 +177,47 @@ class UserProvider with ChangeNotifier {
         _status = Status.Authenticated;
         return value;
       });
+    }
+    notifyListeners();
+  }
+
+  ///Handle the imagepickers and libraries involved
+  PDFDocument? _scannedDocument;
+  File? _scannedDocumentFile;
+  File? _scannedImage;
+
+  openPdfScanner(BuildContext context) async {
+    var doc = await DocumentScannerFlutter.launchForPdf(
+      context,
+      labelsConfig: {
+        ScannerLabelsConfig.ANDROID_NEXT_BUTTON_LABEL: "Next Steps",
+        ScannerLabelsConfig.PDF_GALLERY_FILLED_TITLE_SINGLE: "Only 1 Page",
+        ScannerLabelsConfig.PDF_GALLERY_FILLED_TITLE_MULTIPLE:
+            "Only {PAGES_COUNT} Page"
+      },
+      //source: ScannerFileSource.CAMERA
+    );
+    if (doc != null) {
+      _scannedDocument = null;
+      //setState(() {});
+      await Future.delayed(Duration(milliseconds: 100));
+      _scannedDocumentFile = doc;
+      _scannedDocument = await PDFDocument.fromFile(doc);
+      //setState(() {});
+    }
+    notifyListeners();
+  }
+
+  openImageScanner(BuildContext context) async {
+    var image = await DocumentScannerFlutter.launch(context,
+        //source: ScannerFileSource.CAMERA,
+        labelsConfig: {
+          ScannerLabelsConfig.ANDROID_NEXT_BUTTON_LABEL: "Next Step",
+          ScannerLabelsConfig.ANDROID_OK_LABEL: "OK"
+        });
+    if (image != null) {
+      _scannedImage = image;
+      //setState(() {});
     }
     notifyListeners();
   }

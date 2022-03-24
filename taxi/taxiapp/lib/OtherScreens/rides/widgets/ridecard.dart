@@ -78,7 +78,7 @@ class RideCard extends StatelessWidget {
                     Text(
                       "Kshs 450.00",
                       style: TextStyle(
-                        fontSize: 24.0,
+                        fontSize: 20.0,
                         color: _theme.primaryColor,
                         fontWeight: FontWeight.bold,
                       ),

@@ -39,19 +39,22 @@ class RiderWidget extends StatelessWidget {
                 ),
                 ListTile(
                   leading: Container(
-                    child: appState.riderModel.phone == null
-                        ? const CircleAvatar(
-                            radius: 30,
-                            child: Icon(
-                              Icons.person_outline,
-                              size: 25,
-                            ),
-                          )
-                        : CircleAvatar(
-                            radius: 30,
-                            backgroundImage:
-                                NetworkImage(appState.riderModel.photo),
-                          ),
+                    child: CircleAvatar(
+                      child: Image.asset("assets/images/user.png"),
+                    ),
+                    // child: appState.riderModel.phone == null
+                    //     ? const CircleAvatar(
+                    //         radius: 30,
+                    //         child: Icon(
+                    //           Icons.person_outline,
+                    //           size: 25,
+                    //         ),
+                    //       )
+                    //     : CircleAvatar(
+                    //         radius: 30,
+                    //         backgroundImage:
+                    //             NetworkImage(appState.riderModel.photo),
+                    //       ),
                   ),
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

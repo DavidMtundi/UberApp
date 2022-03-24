@@ -6,7 +6,7 @@ final Color lbasicDarkColor = const Color(0xff222B45);
 final Color lbasicGreyColor = const Color(0xff8F9BB3);
 final Color lbackgroundColor = const Color(0xffF7F9FC);
 
-final Color dprimaryColor = const Color(0xffEE4B45);
+final Color dprimaryColor = Color.fromARGB(255, 58, 214, 44);
 final Color dsecondaryColor = const Color(0xffFFAA00);
 final Color dbasicDarkColor = const Color(0xff222B45);
 final Color dbasicGreyColor = const Color(0xff8F9BB3);

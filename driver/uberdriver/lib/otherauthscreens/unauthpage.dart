@@ -79,7 +79,7 @@ class UnAuth extends StatelessWidget {
                           child: CustomBtn(
                         text: "Register",
                         onTap: () {
-                          changeScreen(context, MultiRegister());
+                          changeScreen(context, Register());
                         },
                         weight: FontWeight.bold,
                         bgColor: Colors.white60,

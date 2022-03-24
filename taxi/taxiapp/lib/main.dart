@@ -8,6 +8,7 @@ import 'package:taxiapp/OtherScreens/otherauthscreens/loginpage.dart';
 import 'package:taxiapp/OtherScreens/otherconstants/themedart.dart';
 import 'package:taxiapp/providers/app_state.dart';
 import 'package:taxiapp/providers/user.dart';
+import 'package:taxiapp/screens/home.dart';
 import 'package:taxiapp/screens/splash.dart';
 import 'locators/service_locator.dart';
 import 'package:provider/provider.dart';
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   // AppStateProvider appState = Provider.of<AppStateProvider>(context);
+    // AppStateProvider appState = Provider.of<AppStateProvider>(context);
     //appState.refreshData();
     return FutureBuilder(
         future: Firebase.initializeApp(),
@@ -59,7 +60,7 @@ class MyApp extends StatelessWidget {
               return WalkThrough();
             case Status.Authenticated:
               // return OtherProperties();
-              return MainPage();
+              return MyHomePage(title: '');
             default:
               return WalkThrough();
           }

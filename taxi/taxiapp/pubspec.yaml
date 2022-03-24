@@ -57,7 +57,11 @@ dependencies:
   percent_indicator: ^4.0.0
   provider: null
   shared_preferences: ^2.0.13
+
   permission_handler: ^9.0.1
+  place_picker: ^0.9.19
+  google_sign_in: ^5.2.4
+
   uuid: null
   font_awesome_flutter: ^9.2.0
   get_it: ^7.2.0

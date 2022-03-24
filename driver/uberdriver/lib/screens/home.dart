@@ -106,19 +106,22 @@ class _MyHomePageState extends State<MyHomePage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
-                              child: userProvider.userModel.phone == null
-                                  ? const CircleAvatar(
-                                      radius: 30,
-                                      child: Icon(
-                                        Icons.person_outline,
-                                        size: 25,
-                                      ),
-                                    )
-                                  : CircleAvatar(
-                                      radius: 30,
-                                      backgroundImage: NetworkImage(
-                                          userProvider.userModel.photo),
-                                    ),
+                              child: CircleAvatar(
+                                child: Image.asset("assets/images/user.png"),
+                              ),
+                              // child: userProvider.userModel.phone == null
+                              //     ? const CircleAvatar(
+                              //         radius: 30,
+                              //         child: Icon(
+                              //           Icons.person_outline,
+                              //           size: 25,
+                              //         ),
+                              //       )
+                              //     : CircleAvatar(
+                              //         radius: 30,
+                              //         backgroundImage: NetworkImage(
+                              //             userProvider.userModel.photo),
+                              //       ),
                             ),
                             const SizedBox(
                               width: 10,
