@@ -26,7 +26,7 @@ class _SplashState extends State<Splash> {
         backgroundColor: Colors.black45,
         body: Expanded(
           child: Image.asset(
-            "assets/icon/playstore.jpeg",
+            "assets/icon/Hadriel.jpg",
             width: 200,
           ),
         ));

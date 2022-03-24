@@ -57,7 +57,7 @@ dependencies:
   percent_indicator: ^4.0.0
   provider: null
   shared_preferences: ^2.0.13
-
+  image_picker_gallery_camera: ^0.2.2
   permission_handler: ^9.0.1
   place_picker: ^0.9.19
   google_sign_in: ^5.2.4
@@ -72,7 +72,7 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/icon/hadriel.png"
+  image_path: "assets/icon/hadriel.jpg"
 
   flutter_test:
     sdk: flutter
