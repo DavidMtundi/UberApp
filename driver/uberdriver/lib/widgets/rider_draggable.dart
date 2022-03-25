@@ -1,4 +1,4 @@
-import 'package:uberdriver/locators/service_locator.dart';
+import 'package:uberdriver/helpers/locators/service_locator.dart';
 import 'package:uberdriver/providers/app_provider.dart';
 import 'package:uberdriver/services/call_sms.dart';
 import 'package:flutter/material.dart';

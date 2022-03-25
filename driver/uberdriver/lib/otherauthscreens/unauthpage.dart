@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:uberdriver/constants.dart';
 import 'package:uberdriver/helpers/screen_navigation.dart';
@@ -7,7 +8,32 @@ import 'package:uberdriver/otherauthscreens/multistage.dart';
 import 'package:uberdriver/otherauthscreens/registerpage.dart';
 import 'package:uberdriver/widgets/custom_btn.dart';
 
-class UnAuth extends StatelessWidget {
+class UnAuth extends StatefulWidget {
+  @override
+  State<UnAuth> createState() => _UnAuthState();
+}
+
+class _UnAuthState extends State<UnAuth> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    initialization();
+  }
+
+  void initialization() async {
+    // This is where you can initialize the resources needed by your app while
+    // the splash screen is displayed.  Remove the following example because
+    // delaying the user experience is a bad design practice!
+    // ignore_for_file: avoid_print
+    print('ready in 3...');
+    await Future.delayed(const Duration(seconds: 1));
+    print('ready in 2...');
+    await Future.delayed(const Duration(seconds: 1));
+
+    FlutterNativeSplash.remove();
+  }
+
   @override
   Widget build(BuildContext context) {
     final ThemeData _theme = Theme.of(context);
@@ -46,7 +72,7 @@ class UnAuth extends StatelessWidget {
                         height: 10,
                       ),
                       Text(
-                        "Earn With Ride Share.",
+                        "Earn With Hadriel.",
                         style: TextStyle(
                             fontSize: 30, fontWeight: FontWeight.w800),
                       ),
@@ -71,7 +97,7 @@ class UnAuth extends StatelessWidget {
                         onTap: () {
                           changeScreen(context, Login());
                         },
-                        bgColor: Colors.green,
+                        //  bgColor: Colors.green,
                         weight: FontWeight.bold,
                       )),
                       const SizedBox(width: 20.0),

@@ -221,7 +221,7 @@ class _DestinationSelectionWidgetState
                   style: TextStyle(color: Colors.black87),
                 ),
                 subtitle: const Text(
-                  "25th avenue, 23 street",
+                  "Jomo Kenyatta Highway",
                   style: TextStyle(color: Colors.black87),
                 ),
               ),
@@ -238,7 +238,7 @@ class _DestinationSelectionWidgetState
                   style: TextStyle(color: Colors.black87),
                 ),
                 subtitle: const Text(
-                  "25th avenue, 23 street",
+                  "Thika Road ",
                   style: TextStyle(color: Colors.black87),
                 ),
               ),
@@ -255,7 +255,7 @@ class _DestinationSelectionWidgetState
                   style: TextStyle(color: Colors.black87),
                 ),
                 subtitle: const Text(
-                  "25th avenue, 23 street",
+                  "Kenyatta Road",
                   style: TextStyle(color: Colors.black87),
                 ),
               ),
@@ -272,7 +272,7 @@ class _DestinationSelectionWidgetState
                   style: TextStyle(color: Colors.black87),
                 ),
                 subtitle: const Text(
-                  "25th avenue, 23 street",
+                  "Nairobi CBD",
                   style: TextStyle(color: Colors.black26),
                 ),
               ),

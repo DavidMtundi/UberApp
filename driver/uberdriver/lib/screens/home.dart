@@ -1,3 +1,4 @@
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:uberdriver/DrawerScreens/customAppDrawer.dart';
 import 'package:uberdriver/helpers/constants.dart';
 import 'package:uberdriver/helpers/screen_navigation.dart';
@@ -27,6 +28,19 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  void initialization() async {
+    // This is where you can initialize the resources needed by your app while
+    // the splash screen is displayed.  Remove the following example because
+    // delaying the user experience is a bad design practice!
+    // ignore_for_file: avoid_print
+    print('ready in 3...');
+    await Future.delayed(const Duration(seconds: 1));
+    print('ready in 2...');
+    await Future.delayed(const Duration(seconds: 1));
+
+    FlutterNativeSplash.remove();
+  }
+
   var scaffoldState = GlobalKey<ScaffoldState>();
 
   @override
@@ -34,6 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
     _deviceToken();
     _updatePosition();
+    initialization();
   }
 
   _deviceToken() async {

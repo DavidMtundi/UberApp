@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker_gallery_camera/image_picker_gallery_camera.dart';
 import 'package:provider/provider.dart';
 import 'package:uberdriver/otherconstants/formValidations.dart';
 import 'package:uberdriver/otherwidgets/customtextformfield.dart';
@@ -212,9 +213,16 @@ Widget screen4(BuildContext context) {
           CustomLargeContainer(
             header: "National ID",
             btnName: "Upload File",
-            btnfc: () {
+            btnfc: () async {
+              print(" here already");
+
               try {
-                authProvider.openImageScanner(context);
+                print("Entered here already");
+                await getImage(context, ImgSource.Both).then((value) {
+                  authProvider.nationalidpath = value.toString();
+                });
+
+                //  authProvider.openImageScanner(context);
               } catch (e) {
                 print(e.toString());
               }
@@ -354,6 +362,37 @@ Widget screen5(BuildContext context) {
       ),
     ),
   );
+}
+
+var _image;
+
+Future<String> getImage(BuildContext context, ImgSource source) async {
+  var image = await ImagePickerGC.pickImage(
+      enableCloseButton: true,
+      closeIcon: Icon(
+        Icons.close,
+        color: Colors.red,
+        size: 12,
+      ),
+      context: context,
+      source: source,
+      barrierDismissible: true,
+      cameraIcon: Icon(
+        Icons.camera_alt,
+        color: Colors.red,
+      ), //cameraIcon and galleryIcon can change. If no icon provided default icon will be present
+      cameraText: Text(
+        "From Camera",
+        style: TextStyle(color: Colors.red),
+      ),
+      galleryText: Text(
+        "From Gallery",
+        style: TextStyle(color: Colors.blue),
+      ));
+  // setState(() {
+  //   _image = image;
+  // });
+  return image.path;
 }
 
 class CustomLargeContainer extends StatelessWidget {

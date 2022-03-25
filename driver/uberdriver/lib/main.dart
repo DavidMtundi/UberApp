@@ -1,23 +1,22 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:uberdriver/customWalkThrough.dart';
+import 'package:uberdriver/helpers/locators/service_locator.dart';
 import 'package:uberdriver/helpers/router.dart';
-import 'package:uberdriver/otherauthscreens/loginpage.dart';
-import 'package:uberdriver/otherauthscreens/multistage.dart';
 import 'package:uberdriver/otherauthscreens/unauthpage.dart';
 import 'package:uberdriver/otherconstants/themedart.dart';
 import 'package:uberdriver/providers/app_provider.dart';
 import 'package:uberdriver/providers/user.dart';
-import 'package:uberdriver/screens/login.dart';
 import 'package:uberdriver/screens/splash.dart';
 import 'package:flutter/material.dart';
 import 'helpers/constants.dart';
-import 'locators/service_locator.dart';
 import 'screens/home.dart';
 import 'package:provider/provider.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   setupLocator();
 

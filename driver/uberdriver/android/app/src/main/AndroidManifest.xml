@@ -3,7 +3,7 @@
    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
    <application
-        android:label="R-Share-Driver"
+        android:label="Hadriel Driver"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <meta-data

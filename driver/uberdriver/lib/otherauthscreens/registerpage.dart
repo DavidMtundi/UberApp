@@ -6,7 +6,6 @@ import 'package:uberdriver/helpers/screen_navigation.dart';
 import 'package:uberdriver/otherauthscreens/carRegistration.dart';
 import 'package:uberdriver/otherauthscreens/loginpage.dart';
 import 'package:uberdriver/otherauthscreens/multistage.dart';
-import 'package:uberdriver/otherauthscreens/phoneauthpackage.dart';
 import 'package:uberdriver/providers/app_provider.dart';
 import 'package:uberdriver/providers/user.dart';
 import 'package:uberdriver/widgets/customtextformfield.dart';
@@ -84,9 +83,8 @@ class Register extends StatelessWidget {
                 child: FlatButton(
                   color: _theme.primaryColor,
                   onPressed: () async {
-
                     //save data to the database
-                   
+
                     if (_sighnupKey.currentState!.validate()) {
                       try {
                         await authProvider
@@ -94,7 +92,7 @@ class Register extends StatelessWidget {
                             .then((value) async {
                           if (value == true) {
                             try {
-                               changeScreen(context, MultiRegister());
+                              changeScreen(context, MultiRegister());
                               // await changeScreenReplacement(
                               //     context, const MainOtpPage());
                             } catch (e) {

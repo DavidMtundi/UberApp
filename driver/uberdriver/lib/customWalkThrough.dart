@@ -1,12 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
 import 'package:uberdriver/otherauthscreens/unauthpage.dart';
 import 'package:uberdriver/otherwidgets/walkthroughstepper.dart';
 import 'package:uberdriver/otherwidgets/walkthroughtemplate.dart';
 import 'package:uberdriver/providers/user.dart';
 
-class WalkThrough extends StatelessWidget {
+class WalkThrough extends StatefulWidget {
+  @override
+  State<WalkThrough> createState() => _WalkThroughState();
+}
+
+class _WalkThroughState extends State<WalkThrough> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    initialization();
+  }
+
+  void initialization() async {
+    // This is where you can initialize the resources needed by your app while
+    // the splash screen is displayed.  Remove the following example because
+    // delaying the user experience is a bad design practice!
+    // ignore_for_file: avoid_print
+    print('ready in 3...');
+    await Future.delayed(const Duration(seconds: 1));
+    print('ready in 2...');
+    await Future.delayed(const Duration(seconds: 1));
+
+    FlutterNativeSplash.remove();
+  }
+
   final PageController _pageViewController = PageController(initialPage: 0);
+
   @override
   Widget build(BuildContext context) {
     final UserProvider _walkthroughProvider =
@@ -25,21 +52,28 @@ class WalkThrough extends StatelessWidget {
                   },
                   children: <Widget>[
                     WalkThroughTemplate(
-                      title: "Get instant Customers",
+                      title: "Accept a Job",
                       subtitle:
-                          "Book a ride with us for quality and customer friendly services.",
-                      image: Image.asset("assets/images/walkthrough1.png"),
+                          "Work with your convenience. take the job whenever you need it.",
+                      image: Image.asset(
+                        "assets/icon/image1.jpeg",
+                        fit: BoxFit.fitHeight,
+                      ),
                     ),
                     WalkThroughTemplate(
-                      title: "Get bonuses on each ride",
+                      title: "Tracking Realtime",
                       subtitle:
-                          "Get bonusses and redemable points for the many rides you book with us.",
-                      image: Image.asset("assets/images/walkthrough2.png"),
+                          "Know exactly where your customer is located with the real time tracking",
+                      image: Image.asset(
+                        "assets/icon/image2.jpg",
+                        fit: BoxFit.fitWidth,
+                      ),
                     ),
                     WalkThroughTemplate(
-                      title: "Get your delivery in time.",
-                      subtitle: "Your trusted delivery person at all times.",
-                      image: Image.asset("assets/images/walkthrough3.png"),
+                      title: "Earn Money.",
+                      subtitle:
+                          "Take up a number of jobs and increase your earnings.",
+                      image: Image.asset("assets/icon/image3.jpeg"),
                     )
                   ],
                 ),

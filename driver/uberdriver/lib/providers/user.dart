@@ -63,7 +63,10 @@ class UserProvider with ChangeNotifier {
   TextEditingController vnationalid = TextEditingController();
   TextEditingController vdriverlicense = TextEditingController();
 
-  //documents
+  //document path
+  late String nationalidpath;
+  late String driverprofilephoto;
+  late String driverlicensephoto;
 
   UserProvider.initialize() {
     _fireSetUp();
