@@ -12,10 +12,16 @@ import 'package:taxiapp/screens/home.dart';
 import 'package:taxiapp/screens/splash.dart';
 import 'locators/service_locator.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
+
+
+// whenever your initialization is completed, remove the splash screen:
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+ WidgetsBinding widgetsBinding= WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+    FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
   //Future reloadData() async {
   AppStateProvider().refreshData();
 
